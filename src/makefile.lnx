@@ -1,0 +1,78 @@
+##############################################################
+# LINUX makefile of FFE 
+#    Original makefile by Duncan Mac-Vicar (duncan@linuxfan.com)
+#  
+# Rick Leite (ric@asbyte.com.br)
+
+# Find the last installed version of allegro
+
+all: $(EXEC) 
+
+$(EXEC): $(OBJS)
+	$(CC) -o $(EXEC) $(OBJS) $(addprefix -l,$(LIBS)) \
+$(addprefix -I,$(INCLUDE)) $(addprefix -L,$(LOAD))
+
+wavsounds.o: $(GH) wavsounds.c wavsounds.h
+	$(CC) $(CFLAGS) -c wavsounds.c
+
+spritess.o: $(GH) sprites.c sprites.h
+	$(CC) $(CFLAGS) -c sprites.c
+
+
+palettes.o: $(GH) palettes.c palettes.h
+	$(CC) $(CFLAGS) -c palettes.c
+
+batle.o: $(GH) batle.c batle.h
+	$(CC) $(CFLAGS) -c batle.c 
+
+display.o: $(GH) display.c display.h
+	$(CC) $(CFLAGS) -c display.c
+
+inits.o: $(GH) inits.c inits.h
+	$(CC) $(CFLAGS) -c inits.c 
+
+initfiles.o: $(GH) initfiles.c initfiles.h
+	$(CC) $(CFLAGS) -c initfiles.c
+
+intro.o: $(GH) intro.c intro.h
+	$(CC) $(CFLAGS) -c intro.c 
+
+loads.o: $(GH) loads.c loads.h
+	$(CC) $(CFLAGS) -c loads.c 
+
+logger.o: $(GH) logger.c logger.h
+	$(CC) $(CFLAGS) -c logger.c
+
+main.o: $(GH) main.c main.h
+	$(CC) $(CFLAGS) -c main.c
+
+monitor.o: $(GH) monitor.c monitor.h
+	$(CC) $(CFLAGS) -c monitor.c
+
+moves.o: $(GH) moves.c moves.h
+	$(CC) $(CFLAGS) -c moves.c
+
+mp3.o: $(GH) mp3.c mp3.h
+	$(CC) $(CFLAGS) -c mp3.c 
+
+refresh.o: $(GH) refresh.c refresh.h
+	$(CC) $(CFLAGS) -c refresh.c
+
+screenshot.o: $(GH) screenshot.c screenshot.h
+	$(CC) $(CFLAGS) -c screenshot.c
+
+startmenu.o: $(GH) startmenu.c startmenu.h
+	$(CC) $(CFLAGS) -c startmenu.c
+
+effects.o: $(GH) effects.c effects.h
+	$(CC) $(CFLAGS) -c effects.c
+
+
+clean:
+	-rm *.o *.?~ *.d *.bak Nomame core -f
+
+veryclean:
+	-rm $(EXEC) *.o *.?~ *.d *.bak Nomame core Makefile so.inc -f
+
+love:
+	@echo "Maniac !!!"
