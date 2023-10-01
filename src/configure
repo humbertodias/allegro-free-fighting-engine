@@ -69,7 +69,7 @@ esac
 
 # Find Allegro --------------------------------------------------------------
 echo "Finding allegro..."
-do_find "$dir_lib" "liballeg-*" "Download from: http://sunsite.dk/allegro/wip.html"
+do_find "$dir_lib" "liballeg*" "Download from: http://sunsite.dk/allegro/wip.html"
 export allegro=$(echo $temp | cut -c19- | cut -d"." -f1,2,3) 
 echo ALLEGRO version: $allegro
 echo 
@@ -85,7 +85,7 @@ echo "Finding Nemo..."
 echo "Nemo is Ok"
 cat << EOFNEMO 
  o   __/|_ 
-  o./ ô)))\/|
+  o./ ï¿½)))\/|
     O__))_/\|
        \|
 EOFNEMO
@@ -121,9 +121,12 @@ OBJS=batle.o display.o inits.o intro.o loads.o logger.o main.o palettes.o \
 monitor.o moves.o mp3.o refresh.o screenshot.o startmenu.o initfiles.o \
 wavsounds.o sprites.o effects.o options.o
 
-CC=$gcc
+#CC=$gcc
+# TODO - MINE
+CC=clang
 #CFLAGS=-g -W -O3 -static
-CFLAGS=-g -Wall -Werror -O6
+#CFLAGS=-g -Wall -Werror -O6 -Werror=deprecated-declarations -Werror -Winvalid-source-encoding -Wheader-guard
+CFLAGS=-g -Wall -Werror -O3 -Werror=deprecated-declarations -Werror -Winvalid-source-encoding -Wheader-guard
 
 EOF
 # ---------------------------------------------------------------------------

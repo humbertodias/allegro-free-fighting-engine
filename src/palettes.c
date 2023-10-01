@@ -35,7 +35,7 @@
 /************************************************************************/
 static int rgb[ DEF_MAX_CLONE_PIXELS ];
 static int xrgb[ DEF_MAX_CLONE_PIXELS ];
-int i;
+//int i;
 static int ii;
 static int iii;
 static INI_section color_default;

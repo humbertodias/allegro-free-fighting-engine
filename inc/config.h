@@ -50,7 +50,7 @@
      *Motive of change: binary small and faster
 */
 
-#define GAME_DEBUG 0 
+#define GAME_DEBUG 2
 
 /*
     CHEAT

@@ -76,7 +76,8 @@ BITMAP *Carton_FT;
 BITMAP *Carton_WN;
 BITMAP *Carton_KO;
 #if TIMEOVER == 1
-BITMAP *Carton_TO;
+// TODO - MINE
+//BITMAP *Carton_TO;
 #endif
 BITMAP *novic0;
 BITMAP *novic1;
@@ -91,10 +92,12 @@ BITMAP *Bkgd;
 BITMAP *Frgd;
 /* BITMAP *Blood; */
 #if TIMEOVER > 0
-BITMAP *B_clock[ 11 ];
+// TODO - MINE
+//BITMAP *B_clock[ 11 ];
 #endif
 #if PERFECT == 1
-BITMAP *B_prfct;
+// TODO - MINE
+//BITMAP *B_prfct;
 #endif 
 /******************************************/
 char animated;
@@ -259,7 +262,7 @@ extern char say2[500] ;
 
 // END OF GLOBAL DEFINITIONS
 
-// declarações de variaveis para o KOF2003
+// declaraï¿½ï¿½es de variaveis para o KOF2003
 BITMAP *tface1;				//p1 face pequena ao lado da barra
 BITMAP *tface2;				//p2 face pequena ao lado da barra
 
@@ -270,7 +273,7 @@ BITMAP *tface_border2;
 char file2[200];			//var para carregar pcx's
 //char buffer[200];			//var tb para carregar pcx's
 
-int opt;				//int para realizar comparações
+int opt;				//int para realizar comparaï¿½ï¿½es
 int lineprint;
 
 void man( void );

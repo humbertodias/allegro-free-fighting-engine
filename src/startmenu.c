@@ -100,7 +100,7 @@ startmenu (void)
 
   TRON ("step 8 : build up selecteurs");
 
-  // este numeros, acho ? são os numeros de personagens e bkgs!
+  // este numeros, acho ? sï¿½o os numeros de personagens e bkgs!
   // cx
   for (cx = -4; cx < 7; cx++)
     {
@@ -113,6 +113,8 @@ startmenu (void)
 	fx = fx - nbchar;
       sprintf (file, "sprites" DIR_BAR
 	       "%s" DIR_BAR "selsmall.pcx", charname[fx]);
+      // TODO - REVISAR
+      continue;
       if ((Icon2 = xload_pcx (file, Pal)) == NULL)
 	Icon2 = xload_pcx ("sprites" DIR_BAR "selmiss.pcx", Pal);
 
@@ -184,13 +186,13 @@ startmenu (void)
 
   TRON ("step 12 : !story mode");
 
-  // se não for o modo story entra
+  // se nï¿½o for o modo story entra
   if (!story)
     {
       while (cy || cx)
 	{
 	  // Estou desabilitando/habilitando a rotina pra ficar
-	  // 'rodando'a imagem kof91 ou não...
+	  // 'rodando'a imagem kof91 ou nï¿½o...
 	  // Aqui, estou fazendo um comparativo para as novas
 	  // features presentes no game.ini
 	  if (opt == 0)
@@ -233,7 +235,7 @@ startmenu (void)
 			   "%s" DIR_BAR "preview.pcx", charname[sel2]);
 
 
-		  // Se não achar uma personagem ....
+		  // Se nï¿½o achar uma personagem ....
 		  if (xload_pcx (passeur, Pal) == NULL)
 		    {
 		      clone = (sel1 == sel2);
@@ -249,7 +251,7 @@ startmenu (void)
 		    }
 		  else
 		    {
-		      // senão carrega o selecionado ?
+		      // senï¿½o carrega o selecionado ?
 		      sprintf (file, "sprites" DIR_BAR
 			       "%s" DIR_BAR "selbig.pcx", charname[sel2]);
 
@@ -877,7 +879,7 @@ startmenu (void)
 	    }
 
 	  /* goto Demoniac ; */
-	  // é o incio da engine :)
+	  // ï¿½ o incio da engine :)
 	  return 1;
 	}
 
@@ -1006,7 +1008,7 @@ startmenu (void)
   blit_KOF91 ();
 
 
-  // INICIO DA SESSÃO QUE CARREGA O BACKGROUND !!!!!
+  // INICIO DA SESSï¿½O QUE CARREGA O BACKGROUND !!!!!
 
 #if GAME_DEBUG > 0
   sprintf (log_mess, "\ncheck strings :\n  char1 : %s\n  char2 : %s\n",
@@ -2518,7 +2520,7 @@ startmenu (void)
 
   PBar = xload_pcx ("sprites" DIR_BAR "pbar.pcx", 0);
 
-// claudemir - era 0 e ficava ligado, agora é 1 desligado, eu acho :)   
+// claudemir - era 0 e ficava ligado, agora ï¿½ 1 desligado, eu acho :)   
 #if TIMEOVER > 0
   TRON ("Loading timeborder.pcx...");
   if (file_missing("sprites" DIR_BAR "timeborder.pcx") ){

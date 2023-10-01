@@ -23,51 +23,37 @@
     *                                                                       *
     *************************************************************************
 */
+#ifndef _DISPLAY_H
+#define _DISPLAY_H
 
-#ifndef _INIFILES_H
-#define _INIFILES_H
+void disp_ini_var( void );
+void disp_put_var(char name_variable[40], int *pvar);
+#if GAME_DEBUG > 0
+void show_fpc( void );
+#endif
+void displays( void );
+void initdisplay( void );
+void refresh_lifebar( void );
+void refresh_powerbar( void );
+void refresh_timer( void );
+void start_timer( void );
+void refresh_vflag( void );
+// claudemir
+void refresh_life_faces( void );
 
-char sret[255 * 2];
-
-int listfiles(char xret[1000][30], const char *directory, const char *sufixname);
-
-typedef struct _L_SECTION {
-
-    char variable[40];
-    char value[255];
-
-} _L_SECTION;
-
-typedef struct _INI_section {
-
-    char namesection[40];
-    int len;
-    _L_SECTION reg[500];
-
-} INI_section;
-
-typedef struct _INI_inifile {
-
-    char namefile[40];
-    int len;
-    char section[40][500];
-
-} INI_inifile;
-
-/* Protos ......*/
-char *ini_get_str(char *sname_file, char *section, char *svalue,
-		  char *sdefault);
-
-int ini_get_int(char *sname_file, char *section, char *svalue,
-		int idefault);
-
-INI_section ini_get_vars(char *sname_file, char *section);
-
-INI_inifile ini_get_section(char *sname_file);
-
-void getcolorstr(int *r,int *g,int *b, char color[20]);
+void text_centre_shadow( BITMAP *outbm, FONT *font, char *text, int x, int y, int color );
+void text_shadow( BITMAP *outbm, FONT *font, char *text, int x, int y, int color );
+void refresh_vflags( void );	
+int xget_config_int( char *section, char *var_name, int val_defa );
+char *xget_config_string( char *section, char *var_name, char *val_defa );
+void save_display( void );
+void PUT_t_clock( int param );
+int GET_t_clock( void );
+void K_listvars( char param[40] ); // monitor command 
+void K_defvar( char namevar[40] );
+void K_setvar( char namevar[40], char param[40], char param2[40] ); // monitor command 
+void adjusts( const char f_s );
 
 #endif
-/*******************************************************/
 
 // EOF

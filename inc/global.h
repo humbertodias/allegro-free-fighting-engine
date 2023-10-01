@@ -124,10 +124,10 @@ struct PLAYER_DATA_STRUCT
 	struct SMOVE smovex;
 };
 
-struct PLAYER_BMP_STRUCT Player1;
-struct PLAYER_BMP_STRUCT Player2;
-struct PLAYER_DATA_STRUCT p1;
-struct PLAYER_DATA_STRUCT p2;
+static struct PLAYER_BMP_STRUCT Player1;
+static struct PLAYER_BMP_STRUCT Player2;
+static struct PLAYER_DATA_STRUCT p1;
+static struct PLAYER_DATA_STRUCT p2;
 /******************************************/
 
 extern DATAFILE *creditflic ;
@@ -180,7 +180,7 @@ extern BITMAP *Carton_WN ;
 extern BITMAP *Carton_KO ;
 
 #if TIMEOVER == 1
-BITMAP *Carton_TO ;
+static BITMAP *Carton_TO ;
 #endif
 
 extern BITMAP *novic0 ;
@@ -214,16 +214,16 @@ extern BITMAP *tface_border2;
 extern char buffer[100];
 extern char file2[200];
 
-extern int opt; /* para as novas opções, intro, display, winner e etc. */
+extern int opt; /* para as novas opï¿½ï¿½es, intro, display, winner e etc. */
 
 /* extern BITMAP *Blood ; */
 
 #if TIMEOVER > 0
-BITMAP *B_clock[ 11 ];
+static BITMAP *B_clock[ 11 ];
 #endif
 
 #if PERFECT == 1
-BITMAP *B_prfct;
+static BITMAP *B_prfct;
 #endif
 
 
@@ -254,9 +254,9 @@ extern char debug ;
 
 // string and key variables
 
-char charname [ 1000 ][ 30 ] ;
-char bkgdname [ 200 ][ 30 ] ;
-char flcname [ 100 ][ 30 ] ;
+static char charname [ 1000 ][ 30 ] ;
+static char bkgdname [ 200 ][ 30 ] ;
+static char flcname [ 100 ][ 30 ] ;
 
 extern int nbchar ;
 extern int nbbkgd ;
@@ -489,7 +489,7 @@ extern void text_shadow( BITMAP *outbm, FONT *font, char *text, int x, int y, in
 extern void text_centre_shadow( BITMAP *outbm, FONT *font, char *text, int x, int y, int color );
 
 //extern char max_nbf1, max_nbf2;
-char inverted ;
+extern char inverted ;
 
 
 

@@ -1,3 +1,7 @@
 data_files
 distro
 build
+.idea
+cmake-build-*
+*.o
+*.old

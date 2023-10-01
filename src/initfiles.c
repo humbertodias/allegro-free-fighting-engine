@@ -131,7 +131,7 @@ char *ini_get_str(char *sname_file, char *section, char *svalue,
 
 	    //skip remarks in the .ini file ....
 	    if (ch == '#')
-		while (!feof(inifile) && (ch = getc(inifile) != 10));;
+		while (!feof(inifile) && (ch = getc(inifile) != 10));
 
 	    // read lines of section
 	    if (ch!=10 && ch!=13 && !isspace(ch)) {
