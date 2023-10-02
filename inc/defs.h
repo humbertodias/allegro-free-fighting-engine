@@ -39,6 +39,7 @@
 #define BEOS 5
 #define FREEBSD 6
 #define OS2 7
+#define OSX 8
 #define MINGW32 DOS
 
 #endif

@@ -87,7 +87,19 @@
     DEFAULT_GFX
 */
 #define BR_GFX GFX_XWINDOWS
-#endif 
+#endif
+#if SO == OSX
+#define DIR_BAR "/"
+#define DEFAULT_GFX 1
+/* *NIX Video modes (see alunix.h):
+    GFX_XWINDOWS, GFX_XDGA, GFX_XDFS, GFX_VGA, GFX_MODEX,
+    GFX_FBCON, GFX_VBEAF, GFX_GGI, GFX_SVGALIB,
+    GFX_AUTODETECT
+    DEFAULT_GFX
+*/
+#define BR_GFX GFX_AUTODETECT
+#endif
+
 /*********/
 
 /*********/

@@ -39,8 +39,7 @@
 
 */
 
-// # include "so.inc"
-#define SO LINUX
+#include "so.inc"
 
 /*   GAME_DEBUG
      0 = NOT debug mode 
@@ -110,6 +109,10 @@
 #define DEF_PAN 128
 #define DEF_PITCH 1000
 
+
+#define DIR_SPRITE "data" DIR_BAR "sprites" DIR_BAR
+#define DIR_WAV "data" DIR_BAR "wav" DIR_BAR
+#define DIR_MIDI "data" DIR_BAR "midi" DIR_BAR
 
 /* END OF CONFIG FLAGS */
 

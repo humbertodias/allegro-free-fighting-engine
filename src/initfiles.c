@@ -37,7 +37,7 @@
 #include "macros.h"
 #include "initfiles.h"
 
-#if SO==LINUX
+#if (SO == LINUX) || (SO == FREEBSD) || (SO == OSX)
 #include <dirent.h>
 #include <sys/types.h>
 #include <sys/stat.h>

@@ -52,7 +52,7 @@ startmenu (void)
   if (gmode)
     p2_sel = 0;
   TRON ("step 4 : load midi");
-  if ((music = xload_midi ("midi" DIR_BAR "select.mid")) == NULL)
+  if ((music = xload_midi (DIR_MIDI "select.mid")) == NULL)
     {
       ERROR ("error in midi file format");
       //allegro_exit ();
@@ -2449,7 +2449,7 @@ startmenu (void)
 
   y = ustrlen (bkgdname[(int)bgd]);
 
-  strcpy (file, "midi" DIR_BAR);
+  strcpy (file, DIR_MIDI);
   ustrncat (file, bkgdname[(int)bgd], y - 4);
   strcat (file, ".mid");
 

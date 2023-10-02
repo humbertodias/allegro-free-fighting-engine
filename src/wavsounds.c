@@ -33,6 +33,8 @@ static SAMPLE *xwav[ DEF_MAX_WAV_SOUNDS ];
 
 static int snd_vol;
 
+
+
 /******************************************************/
 void set_snd_vol( int xpar ){
   snd_vol = xpar;
@@ -155,28 +157,28 @@ void Fight( void )
 void loadsounds( void )
 {
 	TRON( "\nloadsounds()" );
-	xwav[ DEF_rd1 ] = xload_sample ( "wav" DIR_BAR "rd1.wav" );
-	xwav[ DEF_rd2 ] = xload_sample ( "wav" DIR_BAR "rd2.wav" );
-	xwav[ DEF_rd3 ] = xload_sample ( "wav" DIR_BAR "rd3.wav" );
-	xwav[ DEF_fight ] = xload_sample ( "wav" DIR_BAR "fight.wav" );
-	xwav[ DEF_wp_alwa ] = xload_sample ( "wav" DIR_BAR "wp_alwa.wav" );
-	xwav[ DEF_wk_alwa ] = xload_sample ( "wav" DIR_BAR "wk_alwa.wav" );
-	xwav[ DEF_sp_alwa ] = xload_sample ( "wav" DIR_BAR "sp_alwa.wav" );
-	xwav[ DEF_sk_alwa ] = xload_sample ( "wav" DIR_BAR "sk_alwa.wav" );
-	xwav[ DEF_ko ] = xload_sample ( "wav" DIR_BAR "ko.wav" );
-	xwav[ DEF_argh ] = xload_sample ( "wav" DIR_BAR "argh1.wav" );
-	xwav[ DEF_female ] = xload_sample ( "wav" DIR_BAR "argh2.wav" );
-	xwav[ DEF_done ] = xload_sample ( "wav" DIR_BAR "done.wav" );
-	xwav[ DEF_bing ] = xload_sample ( "wav" DIR_BAR "bing.wav" );
-	xwav[ DEF_buzz ] = xload_sample ( "wav" DIR_BAR "buzz.wav" );
-	xwav[ DEF_hit1 ] = xload_sample ( "wav" DIR_BAR "hit1.wav" );
-	xwav[ DEF_hit2 ] = xload_sample ( "wav" DIR_BAR "hit2.wav" );
-	xwav[ DEF_block ] = xload_sample ( "wav" DIR_BAR "block.wav" );
+	xwav[ DEF_rd1 ] = xload_sample ( DIR_WAV "rd1.wav" );
+	xwav[ DEF_rd2 ] = xload_sample ( DIR_WAV "rd2.wav" );
+	xwav[ DEF_rd3 ] = xload_sample ( DIR_WAV "rd3.wav" );
+	xwav[ DEF_fight ] = xload_sample ( DIR_WAV "fight.wav" );
+	xwav[ DEF_wp_alwa ] = xload_sample ( DIR_WAV "wp_alwa.wav" );
+	xwav[ DEF_wk_alwa ] = xload_sample ( DIR_WAV "wk_alwa.wav" );
+	xwav[ DEF_sp_alwa ] = xload_sample ( DIR_WAV "sp_alwa.wav" );
+	xwav[ DEF_sk_alwa ] = xload_sample ( DIR_WAV "sk_alwa.wav" );
+	xwav[ DEF_ko ] = xload_sample ( DIR_WAV "ko.wav" );
+	xwav[ DEF_argh ] = xload_sample ( DIR_WAV "argh1.wav" );
+	xwav[ DEF_female ] = xload_sample ( DIR_WAV "argh2.wav" );
+	xwav[ DEF_done ] = xload_sample ( DIR_WAV "done.wav" );
+	xwav[ DEF_bing ] = xload_sample ( DIR_WAV "bing.wav" );
+	xwav[ DEF_buzz ] = xload_sample ( DIR_WAV "buzz.wav" );
+	xwav[ DEF_hit1 ] = xload_sample ( DIR_WAV "hit1.wav" );
+	xwav[ DEF_hit2 ] = xload_sample ( DIR_WAV "hit2.wav" );
+	xwav[ DEF_block ] = xload_sample ( DIR_WAV "block.wav" );
 #if TIMEOVER > 0
-	xwav[ DEF_to ] = xload_sample ( "wav" DIR_BAR "timeup.wav" );
+	xwav[ DEF_to ] = xload_sample ( DIR_WAV "timeup.wav" );
 #endif
 #if PERFECT == 1
-	xwav[ DEF_prfct ] = xload_sample( "wav" DIR_BAR "perfect.wav" );
+	xwav[ DEF_prfct ] = xload_sample( DIR_WAV "perfect.wav" );
 #endif
 	TRON( "\nloadsounds() - OK." );
 }

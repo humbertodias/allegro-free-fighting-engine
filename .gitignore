@@ -1,7 +1,9 @@
-data_files
+data
 distro
 build
 .idea
 cmake-build-*
 *.o
 *.old
+kof2003*
+.DS_Store
