@@ -3,6 +3,7 @@ distro
 build
 .idea
 cmake-build-*
+CMakeFiles
 *.o
 *.old
 kof2003*
@@ -15,3 +16,4 @@ game.ini
 title.mp3
 title.pcx
 open.flc
+inc/so.inc

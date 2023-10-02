@@ -28,7 +28,7 @@ clean-config:
 	rm -rf fonts.dat game.ini title.* open.flc
 
 cp-config:
-	cd data/k91v12s && cp fonts.dat game.ini title.* ../..
+	cd data/k91v12s && cp fonts.dat game.ini title.* open.flc ../..
 
 replace-data:
 	rm -rf data \
