@@ -111,12 +111,12 @@ startmenu (void)
 
       while (fx > (nbchar - 1))
 	fx = fx - nbchar;
-      sprintf (file, "sprites" DIR_BAR
+      sprintf (file, DIR_SPRITES
 	       "%s" DIR_BAR "selsmall.pcx", charname[fx]);
       // TODO - REVISAR
       continue;
       if ((Icon2 = xload_pcx (file, Pal)) == NULL)
-	Icon2 = xload_pcx ("sprites" DIR_BAR "selmiss.pcx", Pal);
+	Icon2 = xload_pcx (DIR_SPRITES "selmiss.pcx", Pal);
 
       if (Icon2 != NULL)
 	{
@@ -159,13 +159,13 @@ startmenu (void)
 
   if (opt == 0)
     {
-      Carton_KO = xload_pcx ("sprites" DIR_BAR "pattern.pcx", Pal);
+      Carton_KO = xload_pcx (DIR_SPRITES "pattern.pcx", Pal);
       drawing_mode (DRAW_MODE_COPY_PATTERN, Carton_KO, 0, 0);
       drawing_mode (DRAW_MODE_SOLID, Carton_KO, 0, 0);
     }
   else
     {
-      Carton_KO = xload_pcx ("sprites" DIR_BAR "npattern.pcx", Pal);
+      Carton_KO = xload_pcx (DIR_SPRITES "npattern.pcx", Pal);
     }
 
   draw_sprite (virtscreen, Carton_KO, 0, 0);
@@ -228,10 +228,10 @@ startmenu (void)
 	      if (p2_sel && (oldsel2 != sel2))
 		{
 
-		  sprintf (passeur, "sprites" DIR_BAR
+		  sprintf (passeur, DIR_SPRITES
 			   "%s" DIR_BAR "static1.pcx", charname[sel2]);
 
-		  sprintf (file2, "sprites" DIR_BAR
+		  sprintf (file2, DIR_SPRITES
 			   "%s" DIR_BAR "preview.pcx", charname[sel2]);
 
 
@@ -240,9 +240,9 @@ startmenu (void)
 		    {
 		      clone = (sel1 == sel2);
 
-		      Face2 = xload_pcx ("sprites" DIR_BAR "none.pcx", Pal);
+		      Face2 = xload_pcx (DIR_SPRITES "none.pcx", Pal);
 		      draw_sprite (virtscreen, Face2, 220, 45);
-		      Icon2 = xload_pcx ("sprites" DIR_BAR "selmiss.pcx",
+		      Icon2 = xload_pcx (DIR_SPRITES "selmiss.pcx",
 					 Pal);
 		      sprintf (open2, "No character found");
 		      text_centre_shadow (virtscreen, font, open2, 160, 120,
@@ -252,16 +252,16 @@ startmenu (void)
 		  else
 		    {
 		      // sen�o carrega o selecionado ?
-		      sprintf (file, "sprites" DIR_BAR
+		      sprintf (file, DIR_SPRITES
 			       "%s" DIR_BAR "selbig.pcx", charname[sel2]);
 
 		      // aqui eu pego o nome do static1 do personagem 2
-		      //sprintf( file2, "sprites" DIR_BAR
+		      //sprintf( file2, DIR_SPRITES
 		      //              "%s" DIR_BAR "static1.pcx", charname[ sel2 ] );
 
 
 		      sprintf (passeur,
-			       "sprites" DIR_BAR "%s" DIR_BAR "char.ini",
+			       DIR_SPRITES "%s" DIR_BAR "char.ini",
 			       charname[sel2]);
 
 		      override_config_file (passeur);
@@ -344,20 +344,20 @@ startmenu (void)
 	      if (oldsel1 != sel1)
 		{
 
-		  sprintf (passeur, "sprites" DIR_BAR
+		  sprintf (passeur, DIR_SPRITES
 			   "%s" DIR_BAR "static1.pcx", charname[sel1]);
 
 		  //buffer = passeur; // pega static1.pcx do personagem 1
 		  //strcpy(buffer, passeur);
 
-		  sprintf (file2, "sprites" DIR_BAR
+		  sprintf (file2, DIR_SPRITES
 			   "%s" DIR_BAR "preview.pcx", charname[sel1]);
 
 
 
 		  if (xload_pcx (passeur, Pal) == NULL)
 		    {
-		      Face1 = xload_pcx ("sprites" DIR_BAR "none.pcx", Pal);
+		      Face1 = xload_pcx (DIR_SPRITES "none.pcx", Pal);
 
 		      draw_sprite (virtscreen, Face1, 0, 30);
 		      sprintf (open1, "No character found");
@@ -365,7 +365,7 @@ startmenu (void)
 					  open1, 160, 70, sel_player1);
 
 		      Icon1 =
-			xload_pcx ("sprites" DIR_BAR "selmiss.pcx", Pal);
+			xload_pcx (DIR_SPRITES "selmiss.pcx", Pal);
 
 		      draw_sprite (virtscreen, Icon1, 145, 1);
 
@@ -374,10 +374,10 @@ startmenu (void)
 		  else
 		    {
 
-		      sprintf (file, "sprites" DIR_BAR
+		      sprintf (file, DIR_SPRITES
 			       "%s" DIR_BAR "selbig.pcx", charname[sel1]);
 
-		      sprintf (passeur, "sprites" DIR_BAR
+		      sprintf (passeur, DIR_SPRITES
 			       "%s" DIR_BAR "char.ini", charname[sel1]);
 
 		      override_config_file (passeur);
@@ -407,7 +407,7 @@ startmenu (void)
 		      if ( (Face1 = xload_pcx (file, Pal)) )
 			{
                           clone = (sel1==sel2);
-                          sprintf (file, "sprites" DIR_BAR
+                          sprintf (file, DIR_SPRITES
                                "%s" DIR_BAR "selbig.pcx", charname[sel2]);
 
                           Face2 = load_sprite (file, Pal);
@@ -415,7 +415,7 @@ startmenu (void)
 
                           
                           if (preview2_missing == 0){
-                              sprintf (file2, "sprites" DIR_BAR
+                              sprintf (file2, DIR_SPRITES
                                 "%s" DIR_BAR "preview.pcx", charname[sel2]);
                                tface2 = load_sprite (file2, Pal);
                                draw_sprite (virtscreen, tface2, 200, 10);
@@ -442,7 +442,7 @@ startmenu (void)
 		      else
 			{
 			  Face1 =
-			    xload_pcx ("sprites" DIR_BAR "miss.pcx", Pal);
+			    xload_pcx (DIR_SPRITES "miss.pcx", Pal);
 			  draw_sprite (virtscreen, Face1, 0, 30);
 			  // desenha a static1.pcx na tela
 			  //draw_sprite( virtscreen, tface1, 150, 60 );
@@ -562,7 +562,7 @@ startmenu (void)
 						       || P1_WP
 						       || P1_SK || P1_WK)))
 		    {
-		      sprintf (passeur, "sprites" DIR_BAR
+		      sprintf (passeur, DIR_SPRITES
 			       "%s" DIR_BAR "static1.pcx", charname[sel2]);
 
 		      if ((xload_pcx (passeur, Pal) == NULL)
@@ -587,12 +587,12 @@ startmenu (void)
 		      while (fx < 0)
 			fx = fx + nbchar;
 
-		      sprintf (file, "sprites" DIR_BAR
+		      sprintf (file, DIR_SPRITES
 			       "%s" DIR_BAR "selsmall.pcx", charname[fx]);
 
 		      if ((Icon2 = xload_pcx (file, Pal)) == NULL)
 			Icon2 =
-			  xload_pcx ("sprites" DIR_BAR "selmiss.pcx", Pal);
+			  xload_pcx (DIR_SPRITES "selmiss.pcx", Pal);
 		      else if (secretchar[fx])
 			{
 			  for (x = 0; x < Icon2->w; x++)
@@ -623,12 +623,12 @@ startmenu (void)
 		      while (fx > (nbchar - 1))
 			fx = fx - nbchar;
 
-		      sprintf (file, "sprites" DIR_BAR
+		      sprintf (file, DIR_SPRITES
 			       "%s" DIR_BAR "selsmall.pcx", charname[fx]);
 
 		      if ((Icon2 = xload_pcx (file, Pal)) == NULL)
 			Icon2 =
-			  xload_pcx ("sprites" DIR_BAR "selmiss.pcx", Pal);
+			  xload_pcx (DIR_SPRITES "selmiss.pcx", Pal);
 		      else if (secretchar[fx])
 			{
 			  for (x = 0; x < Icon2->w; x++)
@@ -659,7 +659,7 @@ startmenu (void)
 		  if (P1_WK || P1_SK || P1_WP || P1_SP)
 		    {
 
-		      sprintf (passeur, "sprites" DIR_BAR
+		      sprintf (passeur, DIR_SPRITES
 			       "%s" DIR_BAR "static1.pcx", charname[sel1]);
 
 		      if ((xload_pcx (passeur, Pal) == NULL)
@@ -700,12 +700,12 @@ startmenu (void)
 		      while (fx < 0)
 			fx = fx + nbchar;
 
-		      sprintf (file, "sprites" DIR_BAR
+		      sprintf (file, DIR_SPRITES
 			       "%s" DIR_BAR "selsmall.pcx", charname[fx]);
 
 		      if ((Icon1 = xload_pcx (file, Pal)) == NULL)
 			Icon1 =
-			  xload_pcx ("sprites" DIR_BAR "selmiss.pcx", Pal);
+			  xload_pcx (DIR_SPRITES "selmiss.pcx", Pal);
 		      else if (secretchar[fx])
 			{
 			  for (x = 0; x < Icon1->w; x++)
@@ -736,12 +736,12 @@ startmenu (void)
 		      while (fx > (nbchar - 1))
 			fx = fx - nbchar;
 
-		      sprintf (file, "sprites" DIR_BAR
+		      sprintf (file, DIR_SPRITES
 			       "%s" DIR_BAR "selsmall.pcx", charname[fx]);
 
 		      if ((Icon1 = xload_pcx (file, Pal)) == NULL)
 			Icon1 =
-			  xload_pcx ("sprites" DIR_BAR "selmiss.pcx", Pal);
+			  xload_pcx (DIR_SPRITES "selmiss.pcx", Pal);
 		      else if (secretchar[fx])
 			{
 			  for (x = 0; x < Icon1->w; x++)
@@ -794,7 +794,7 @@ startmenu (void)
 	  for (x = 0; x < nbchar; x++)
 	    secretchar[x] = 0;
 
-	  if ((Selecteur1 = xload_pcx ("sprites" DIR_BAR "end.pcx", 0)) ==
+	  if ((Selecteur1 = xload_pcx (DIR_SPRITES "end.pcx", 0)) ==
 	      NULL)
 	    {
 	      ERROR ("end.pcx missing");
@@ -856,7 +856,7 @@ startmenu (void)
 		  if (cx == 1)
 		    {
 
-		      sprintf (passeur, "sprites" DIR_BAR
+		      sprintf (passeur, DIR_SPRITES
 			       "%s" DIR_BAR "endimg.pcx", charname[sel1]);
 
 		      if ((Selecteur2 = xload_pcx (passeur, 0)) != NULL)
@@ -893,10 +893,10 @@ startmenu (void)
 	    cy = 0;
 	}
 
-      sprintf (file, "sprites" DIR_BAR
+      sprintf (file, DIR_SPRITES
 	       "%s" DIR_BAR "selbig.pcx", charname[sel2]);
 
-      sprintf (passeur, "sprites" DIR_BAR
+      sprintf (passeur, DIR_SPRITES
 	       "%s" DIR_BAR "char.ini", charname[sel2]);
 
       override_config_file (passeur);
@@ -911,7 +911,7 @@ startmenu (void)
       TRON ("OK...");
       Face2 = load_sprite (file, Pal);
 
-      sprintf (passeur, "sprites" DIR_BAR
+      sprintf (passeur, DIR_SPRITES
 	       "%s" DIR_BAR "selbig.pcx", charname[sel1]);
 
       Face1 = xload_pcx (passeur, Pal);
@@ -1222,7 +1222,7 @@ startmenu (void)
   rect (virtscreen, 20, 170, 280, 190, sel_player2);
 
   //carrega o logo do kof2003 no now loading...
-  tface1 = xload_pcx ("sprites" DIR_BAR "kofload.pcx", Pal);
+  tface1 = xload_pcx (DIR_SPRITES "kofload.pcx", Pal);
   draw_sprite (virtscreen, tface1, 0, 0);
 
   //rest (500); //pra testar e ver a imagem
@@ -1235,7 +1235,7 @@ startmenu (void)
 
   strcpy (sectn, charname[sel2]);
 
-  sprintf (passeur, "sprites" DIR_BAR
+  sprintf (passeur, DIR_SPRITES
 	   "%s" DIR_BAR "char.ini", charname[sel2]);
 
 #if GAME_DEBUG > 0
@@ -1830,7 +1830,7 @@ startmenu (void)
 
   last_sel1 = sel1;
   strcpy (sectn, charname[sel1]);
-  sprintf (passeur, "sprites" DIR_BAR "%s" DIR_BAR "char.ini",
+  sprintf (passeur, DIR_SPRITES "%s" DIR_BAR "char.ini",
 	   charname[sel1]);
 
 #if GAME_DEBUG > 0
@@ -2465,28 +2465,28 @@ startmenu (void)
 
   override_config_file ("game.ini");
 
-  LBbanner = xload_pcx ("sprites" DIR_BAR "lifebars.pcx", 0);
-  LBbanner2 = xload_pcx ("sprites" DIR_BAR "lifebars2.pcx", 0);
+  LBbanner = xload_pcx (DIR_SPRITES "lifebars.pcx", 0);
+  LBbanner2 = xload_pcx (DIR_SPRITES "lifebars2.pcx", 0);
 
-  Bar = xload_pcx ("sprites" DIR_BAR "bar.pcx", 0);
+  Bar = xload_pcx (DIR_SPRITES "bar.pcx", 0);
   draw_sprite_h_flip (Bar2, Bar, 0, 0);
 
   // Aqui irei carregar as caras que ficam no lado da barra de life
 
-  sprintf (file2, "sprites" DIR_BAR "%s" DIR_BAR "selsmall.pcx",
+  sprintf (file2, DIR_SPRITES "%s" DIR_BAR "selsmall.pcx",
 	   charname[sel1]);
 
 
   tface1 = xload_pcx (file2, Pal);
 
-  tface_border1 = xload_pcx("sprites" DIR_BAR "bsmall1.pcx", Pal);
+  tface_border1 = xload_pcx(DIR_SPRITES "bsmall1.pcx", Pal);
   
-  sprintf (file2, "sprites" DIR_BAR "%s" DIR_BAR "selsmall.pcx",
+  sprintf (file2, DIR_SPRITES "%s" DIR_BAR "selsmall.pcx",
 	   charname[sel2]);
   clone = (sel1 == sel2);
 
   tface2 = load_sprite(file2, Pal);
-  tface_border2 = xload_pcx("sprites" DIR_BAR "bsmall2.pcx", Pal);
+  tface_border2 = xload_pcx(DIR_SPRITES "bsmall2.pcx", Pal);
 
   //if ( tface1 != NULL )
   //      draw_sprite( virtscreen, tface1, 0, 25 );
@@ -2494,64 +2494,64 @@ startmenu (void)
 
   // encerra comandos para mostrar as caras :)
 
-  novic0 = xload_pcx ("sprites" DIR_BAR "novic0.pcx", 0);
-  novic1 = xload_pcx ("sprites" DIR_BAR "novic1.pcx", 0);
+  novic0 = xload_pcx (DIR_SPRITES "novic0.pcx", 0);
+  novic1 = xload_pcx (DIR_SPRITES "novic1.pcx", 0);
 
-  avic0 = xload_pcx ("sprites" DIR_BAR "vic0.pcx", 0);
-  avic1 = xload_pcx ("sprites" DIR_BAR "vic1.pcx", 0);
+  avic0 = xload_pcx (DIR_SPRITES "vic0.pcx", 0);
+  avic1 = xload_pcx (DIR_SPRITES "vic1.pcx", 0);
 
-  /*    Blood = xload_pcx("sprites" DIR_BAR "lastpal.pcx", Pal);
+  /*    Blood = xload_pcx(DIR_SPRITES "lastpal.pcx", Pal);
    */
 
 
-  Carton_R1 = xload_pcx ("sprites" DIR_BAR "round1.pcx", 0);
+  Carton_R1 = xload_pcx (DIR_SPRITES "round1.pcx", 0);
 
-  Carton_R2 = xload_pcx ("sprites" DIR_BAR "round2.pcx", 0);
+  Carton_R2 = xload_pcx (DIR_SPRITES "round2.pcx", 0);
 
-  Carton_R3 = xload_pcx ("sprites" DIR_BAR "round3.pcx", 0);
+  Carton_R3 = xload_pcx (DIR_SPRITES "round3.pcx", 0);
 
-  Carton_FT = xload_pcx ("sprites" DIR_BAR "fight.pcx", 0);
+  Carton_FT = xload_pcx (DIR_SPRITES "fight.pcx", 0);
 
-  Carton_WN = xload_pcx ("sprites" DIR_BAR "winner.pcx", 0);
+  Carton_WN = xload_pcx (DIR_SPRITES "winner.pcx", 0);
 
-  Carton_KO = xload_pcx ("sprites" DIR_BAR "ko.pcx", 0);
+  Carton_KO = xload_pcx (DIR_SPRITES "ko.pcx", 0);
 
-  Power = xload_pcx ("sprites" DIR_BAR "power.pcx", 0);
+  Power = xload_pcx (DIR_SPRITES "power.pcx", 0);
 
-  PBar = xload_pcx ("sprites" DIR_BAR "pbar.pcx", 0);
+  PBar = xload_pcx (DIR_SPRITES "pbar.pcx", 0);
 
 // claudemir - era 0 e ficava ligado, agora � 1 desligado, eu acho :)   
 #if TIMEOVER > 0
   TRON ("Loading timeborder.pcx...");
-  if (file_missing("sprites" DIR_BAR "timeborder.pcx") ){
+  if (file_missing(DIR_SPRITES "timeborder.pcx") ){
      B_clock[10] = create_bitmap( 29,21 );
      rectfill( B_clock[10],0,0,29,21, makecol( 0, 0, 0 ) );
   }else{
-     B_clock[10] = xload_pcx ("sprites" DIR_BAR "timeborder.pcx", 0);
+     B_clock[10] = xload_pcx (DIR_SPRITES "timeborder.pcx", 0);
   }
 
   TRON ("Loading numbers 0.pcx - 9.pcx");
-  B_clock[0] = xload_pcx ("sprites" DIR_BAR "0.pcx", 0);
-  B_clock[1] = xload_pcx ("sprites" DIR_BAR "1.pcx", 0);
-  B_clock[2] = xload_pcx ("sprites" DIR_BAR "2.pcx", 0);
-  B_clock[3] = xload_pcx ("sprites" DIR_BAR "3.pcx", 0);
-  B_clock[4] = xload_pcx ("sprites" DIR_BAR "4.pcx", 0);
-  B_clock[5] = xload_pcx ("sprites" DIR_BAR "5.pcx", 0);
-  B_clock[6] = xload_pcx ("sprites" DIR_BAR "6.pcx", 0);
-  B_clock[7] = xload_pcx ("sprites" DIR_BAR "7.pcx", 0);
-  B_clock[8] = xload_pcx ("sprites" DIR_BAR "8.pcx", 0);
-  B_clock[9] = xload_pcx ("sprites" DIR_BAR "9.pcx", 0);
+  B_clock[0] = xload_pcx (DIR_SPRITES "0.pcx", 0);
+  B_clock[1] = xload_pcx (DIR_SPRITES "1.pcx", 0);
+  B_clock[2] = xload_pcx (DIR_SPRITES "2.pcx", 0);
+  B_clock[3] = xload_pcx (DIR_SPRITES "3.pcx", 0);
+  B_clock[4] = xload_pcx (DIR_SPRITES "4.pcx", 0);
+  B_clock[5] = xload_pcx (DIR_SPRITES "5.pcx", 0);
+  B_clock[6] = xload_pcx (DIR_SPRITES "6.pcx", 0);
+  B_clock[7] = xload_pcx (DIR_SPRITES "7.pcx", 0);
+  B_clock[8] = xload_pcx (DIR_SPRITES "8.pcx", 0);
+  B_clock[9] = xload_pcx (DIR_SPRITES "9.pcx", 0);
   TRON ("ok");
 #endif
 
 #if PERFECT == 1
 
-  B_prfct = xload_pcx ("sprites" DIR_BAR "perfect.pcx", 0);
+  B_prfct = xload_pcx (DIR_SPRITES "perfect.pcx", 0);
 #endif
 
 #if SHADOW == 1
 
-  B_shadow = xload_pcx ("sprites" DIR_BAR "shadow.pcx", 0);
+  B_shadow = xload_pcx (DIR_SPRITES "shadow.pcx", 0);
 #endif
 
   text_centre_shadow (virtscreen, font, "Now Loading... please wait", 160,
