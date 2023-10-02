@@ -1,1 +1,1 @@
-#define SO LINUX
+#define SO OSX
