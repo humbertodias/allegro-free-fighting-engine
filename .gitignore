@@ -7,3 +7,10 @@ cmake-build-*
 *.old
 kof2003*
 .DS_Store
+k91v12s.zip
+
+# configurations
+fonts.dat
+game.ini
+title.mp3
+title.pcx

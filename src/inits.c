@@ -57,12 +57,12 @@ int inits( void )
 	Bar2 = create_bitmap( 200,50 ) ;
 	fill_sprite( Bar2 );
 
-	Carton_KO = xload_pcx( DIR_SPRITE "mode.pcx", Pal );
+	Carton_KO = xload_pcx( DIR_SPRITES "mode.pcx", Pal );
 
-	Carton_WN = xload_pcx( DIR_SPRITE "pick.pcx", Pal );
+	Carton_WN = xload_pcx( DIR_SPRITES "pick.pcx", Pal );
 
 #if TIMEOVER > 0
-	Carton_TO = xload_pcx( DIR_SPRITE "timeup.pcx", Pal );
+	Carton_TO = xload_pcx( DIR_SPRITES "timeup.pcx", Pal );
 #endif
 
 	gmode = 2 ;
@@ -203,7 +203,7 @@ int inits( void )
 
 		diff = 1 ;
 
-		Carton_KO = xload_pcx( DIR_SPRITE "diff.pcx", Pal );
+		Carton_KO = xload_pcx( DIR_SPRITES "diff.pcx", Pal );
 
 		clear_keybuf() ;
 

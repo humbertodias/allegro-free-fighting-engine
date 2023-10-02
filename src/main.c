@@ -261,9 +261,9 @@ int main(int argc, char ** argv)
 	loadsounds();
 	set_volume ( get_snd_vol() , midi_vol );
 
-        nbchar=listfiles( charname, "sprites", "" );	
-	nbbkgd=listfiles( bkgdname, "bkgds", "pcx" );
-        nbflc=listfiles( flcname, "bkgds", "flc" );
+        nbchar=listfiles( charname, DIR_SPRITES, "" );
+	nbbkgd=listfiles( bkgdname, DIR_BKGDS, "pcx" );
+        nbflc=listfiles( flcname, DIR_BKGDS, "flc" );
 
 	for ( cx = 0; cx < nbflc; cx++ )
 	{
@@ -294,14 +294,14 @@ int main(int argc, char ** argv)
 	wimpact_nbf = get_config_int ( 0 , "wimpact_nbf" , 1 );
 	simpact_nbf = get_config_int ( 0 , "simpact_nbf" , 1 );
 	bimpact_nbf = get_config_int ( 0 , "bimpact_nbf" , 1 );
-	if ( ( Lock = xload_pcx ( "sprites" DIR_BAR "lock.pcx" , 0 ) ) == NULL )
+	if ( ( Lock = xload_pcx ( DIR_SPRITES "lock.pcx" , 0 ) ) == NULL )
 	{
 		ERROR( "lock.pcx missing" );
 		//exit( 0 );
 	}
 	for ( num = 1; num < ( wimpact_nbf + 1 ); ++num )
 	{
-		sprintf( file, "sprites" DIR_BAR "wimpact%d.pcx", num );
+		sprintf( file, DIR_SPRITES "wimpact%d.pcx", num );
 		if ( ( WImpact[ num ] = xload_pcx ( file , 0 ) ) == NULL )
 		{
 			sprintf( log_mess, "Can't open %s file", file );
@@ -311,12 +311,12 @@ int main(int argc, char ** argv)
 	}
 	for ( num = 1; num < ( simpact_nbf + 1 ); ++num )
 	{
-		sprintf( file, "sprites" DIR_BAR "simpact%d.pcx", num );
+		sprintf( file, DIR_SPRITES "simpact%d.pcx", num );
 		SImpact[ num ] = xload_pcx ( file , 0 );
 	}
 	for ( num = 1; num < ( bimpact_nbf + 1 ); ++num )
 	{
-		sprintf( file, "sprites" DIR_BAR "bimpact%d.pcx", num );
+		sprintf( file, DIR_SPRITES "bimpact%d.pcx", num );
 		BlockImpact[ num ] = xload_pcx ( file , 0 );
 	}
 	// Get Control Keys
@@ -353,11 +353,11 @@ int main(int argc, char ** argv)
 	// SCAN CHARS DIRECTORY
 	for ( cx = 0; cx < nbchar; cx++ )
 	{
-		sprintf( passeur, "sprites" DIR_BAR "%s" DIR_BAR "static1.pcx", charname[ cx ] );
+		sprintf( passeur, DIR_SPRITES "%s" DIR_BAR "static1.pcx", charname[ cx ] );
         // TODO - REVISAR
         //present[ cx ] = ( xload_pcx( passeur, Pal ) != NULL );
         continue;
-		sprintf( passeur, "sprites" DIR_BAR "%s" DIR_BAR "char.ini", charname[ cx ] );
+		sprintf( passeur, DIR_SPRITES "%s" DIR_BAR "char.ini", charname[ cx ] );
 		override_config_file( passeur );
 		secretchar[ cx ] = get_config_int ( charname[ cx ], "locked" , 0 );
 	}
@@ -375,14 +375,14 @@ int main(int argc, char ** argv)
 	}
 	// fim da rotina de SOM
 
-	//if ( ( music = xload_midi ( "midi" DIR_BAR "select.mid" ) ) == NULL )
+	//if ( ( music = xload_midi ( DIR_MIDI "select.mid" ) ) == NULL )
 	//{
         //	ERROR( "error in midi file format" );
 	//	allegro_exit();
 	//	exit( 0 );
 	//}
 	
-	music = xload_midi ( "midi" DIR_BAR "select.mid" );
+	music = xload_midi ( DIR_MIDI "select.mid" );
 	TRON( "play midi" );
 	if( midi_ok() ) play_midi ( music , 1 );
 	TRON( "OK." );

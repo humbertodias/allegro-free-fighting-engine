@@ -110,9 +110,10 @@
 #define DEF_PITCH 1000
 
 
-#define DIR_SPRITE "data" DIR_BAR "sprites" DIR_BAR
+#define DIR_SPRITES "data" DIR_BAR "sprites" DIR_BAR
 #define DIR_WAV "data" DIR_BAR "wav" DIR_BAR
 #define DIR_MIDI "data" DIR_BAR "midi" DIR_BAR
+#define DIR_BKGDS "data" DIR_BAR "bkgds" DIR_BAR
 
 /* END OF CONFIG FLAGS */
 
