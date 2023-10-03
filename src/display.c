@@ -888,14 +888,15 @@ void refresh_life_faces (void)
 int xget_config_int( char *section, char *var_name, int val_defa )
 {
 	static int val_ret = 0;
-	static char exist[3] = "xxx";
-	
-	sprintf( exist, "%s", get_config_string( section, var_name, "xxx" ) );
+	static char exist[6] = "xxx";
+
+    const char * str = get_config_string( section, var_name, "xxx" );
+    sprintf( exist, "%s", str );
 	if ( !strcmp( exist, "xxx" ) )
 	{
 		val_ret = val_defa;
 		set_config_int( section, var_name, val_ret );
-	}else{
+	} else{
 	        val_ret = get_config_int( section, var_name, 0 );
 	}
 	

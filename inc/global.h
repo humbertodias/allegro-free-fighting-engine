@@ -470,11 +470,11 @@ extern char wind_flag ;
 
 extern char tnt2 ;
 
-extern char open1[ 40 ] ;
-extern char open2[ 40 ] ;
-extern char open3[ 40 ] ;
-extern char open4[ 40 ] ;
-extern char open5[ 40 ] ;
+extern char open1[ 60 ] ;
+extern char open2[ 60 ] ;
+extern char open3[ 60 ] ;
+extern char open4[ 60 ] ;
+extern char open5[ 60 ] ;
 extern char title[ 20 ] ;
 extern char say1[500] ;
 extern char say2[500] ;
