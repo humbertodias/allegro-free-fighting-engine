@@ -351,12 +351,10 @@ int main(int argc, char ** argv)
 		//exit( 0 );
 	}
 	// SCAN CHARS DIRECTORY
-	for ( cx = 0; cx < nbchar; cx++ )
+	for ( int cx = 0; cx < nbchar; cx++ )
 	{
 		sprintf( passeur, DIR_SPRITES "%s" DIR_BAR "static1.pcx", charname[ cx ] );
-        // TODO - REVISAR
-        //present[ cx ] = ( xload_pcx( passeur, Pal ) != NULL );
-        continue;
+        present[ cx ] = ( xload_pcx( passeur, Pal ) != NULL );
 		sprintf( passeur, DIR_SPRITES "%s" DIR_BAR "char.ini", charname[ cx ] );
 		override_config_file( passeur );
 		secretchar[ cx ] = get_config_int ( charname[ cx ], "locked" , 0 );

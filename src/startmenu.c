@@ -26,7 +26,6 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
 
 #include "config.h"
 #include "macros.h"
@@ -36,9 +35,12 @@
 #include "wavsounds.h"
 #include "loads.h"
 
+char charname [ 1000 ][ 30 ] ;
+char bkgdname [ 200 ][ 30 ] ;
+char flcname [ 100 ][ 30 ] ;
+
 /**************************************************/
-int
-startmenu (void)
+int startmenu (void)
 {
   char preview1_missing='\0';
   char preview2_missing='\0';
@@ -102,6 +104,7 @@ startmenu (void)
 
   // este numeros, acho ? s�o os numeros de personagens e bkgs!
   // cx
+  int fx;
   for (cx = -4; cx < 7; cx++)
     {
       fx = cx;
@@ -113,8 +116,6 @@ startmenu (void)
 	fx = fx - nbchar;
       sprintf (file, DIR_SPRITES
 	       "%s" DIR_BAR "selsmall.pcx", charname[fx]);
-      // TODO - REVISAR
-      continue;
       if ((Icon2 = xload_pcx (file, Pal)) == NULL)
 	Icon2 = xload_pcx (DIR_SPRITES "selmiss.pcx", Pal);
 
@@ -317,7 +318,7 @@ startmenu (void)
 			    }	/* if( secretchar... */
 
                           draw_sprite (virtscreen, Face2, 220, 30);
-                       
+
 
 			  // aqui eu desenho o sprite static.pcx do p2
 			  if (preview2_missing == 0)
@@ -399,7 +400,7 @@ startmenu (void)
 		      sprintf (charn1, "%s", open1);
 
 		      // carrega a static1.pcx do p1
-                      preview1_missing=file_missing( file2 );  
+                      preview1_missing=file_missing( file2 );
 
                       if( preview1_missing==0 )
 		         tface1 = xload_pcx (file2, Pal);
@@ -413,7 +414,7 @@ startmenu (void)
                           Face2 = load_sprite (file, Pal);
                           draw_sprite (virtscreen, Face2, 220, 30);
 
-                          
+
                           if (preview2_missing == 0){
                               sprintf (file2, DIR_SPRITES
                                 "%s" DIR_BAR "preview.pcx", charname[sel2]);
@@ -1673,7 +1674,7 @@ startmenu (void)
 	       get_config_string (sectn, "rushx_exec", ""));
 
       /*
-         p2.rushx.exec= 
+         p2.rushx.exec=
          get_config_string(sectn, "rushx_exec", "");
        */
 
@@ -1795,7 +1796,7 @@ startmenu (void)
 
 	/******* LOAD SPRITES2 ****************************/
 
-  // aqui ele mostra na hora que carrega a luta loading... 
+  // aqui ele mostra na hora que carrega a luta loading...
   text_centre_shadow (virtscreen, font, "Now Loading... please wait", 160,
 		      150, makecol (255, 255, 255));
   rect (virtscreen, 20, 170, 280, 190, sel_player2);
@@ -2480,7 +2481,7 @@ startmenu (void)
   tface1 = xload_pcx (file2, Pal);
 
   tface_border1 = xload_pcx(DIR_SPRITES "bsmall1.pcx", Pal);
-  
+
   sprintf (file2, DIR_SPRITES "%s" DIR_BAR "selsmall.pcx",
 	   charname[sel2]);
   clone = (sel1 == sel2);

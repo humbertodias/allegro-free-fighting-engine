@@ -254,9 +254,9 @@ extern char debug ;
 
 // string and key variables
 
-static char charname [ 1000 ][ 30 ] ;
-static char bkgdname [ 200 ][ 30 ] ;
-static char flcname [ 100 ][ 30 ] ;
+extern char charname [ 1000 ][ 30 ] ;
+extern char bkgdname [ 200 ][ 30 ] ;
+extern char flcname [ 100 ][ 30 ] ;
 
 extern int nbchar ;
 extern int nbbkgd ;
