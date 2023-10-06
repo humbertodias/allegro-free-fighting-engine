@@ -906,7 +906,7 @@ int xget_config_int( char *section, char *var_name, int val_defa )
 /********************************************************/
 char *xget_config_string( char *section, char *var_name, char *val_defa )
 {
-	static char sval_ret[ 3 ] = "xxx";
+	static char sval_ret[ 6 ] = "xxx";
 
 	/* sprintf( sval_ret,"%s", "xxx" ); */
 	sprintf( sval_ret, "%s", get_config_string( section, var_name, "xxx" ) );

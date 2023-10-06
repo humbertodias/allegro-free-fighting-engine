@@ -257,8 +257,8 @@ int startmenu (void)
 			       "%s" DIR_BAR "selbig.pcx", charname[sel2]);
 
 		      // aqui eu pego o nome do static1 do personagem 2
-		      //sprintf( file2, DIR_SPRITES
-		      //              "%s" DIR_BAR "static1.pcx", charname[ sel2 ] );
+//		      sprintf( file2, DIR_SPRITES
+//		                    "%s" DIR_BAR "static1.pcx", charname[ sel2 ] );
 
 
 		      sprintf (passeur,
@@ -656,8 +656,9 @@ int startmenu (void)
 		  oldsel1 = sel1;
 
 		  poll_joystick ();
-
-		  if (P1_WK || P1_SK || P1_WP || P1_SP)
+          // TODO
+          bool enter = key[KEY_ENTER];
+		  if (P1_WK || P1_SK || P1_WP || P1_SP || enter)
 		    {
 
 		      sprintf (passeur, DIR_SPRITES
@@ -1025,7 +1026,7 @@ int startmenu (void)
   bgd = 1;
 
   Carton_R1 = create_bitmap (260, 160);
-  sprintf (passeur, "bkgds" DIR_BAR "%s", bkgdname[(int)bgd]);
+  sprintf (passeur, DIR_BKGDS "%s", bkgdname[(int)bgd]);
 
   if ((Carton_R2 = xload_pcx (passeur, Pal)) == NULL)
     {
@@ -1130,7 +1131,7 @@ int startmenu (void)
 
 	      while (bgd < 0)
 		bgd = bgd + nbbkgd;
-	      sprintf (passeur, "bkgds" DIR_BAR "%s", bkgdname[(int)bgd]);
+	      sprintf (passeur, DIR_BKGDS "%s", bkgdname[(int)bgd]);
 
 	      if ((Carton_R2 = xload_pcx (passeur, Pal)) == NULL)
 		{
@@ -1167,7 +1168,7 @@ int startmenu (void)
 	      while (bgd > (nbbkgd - 1))
 		bgd = bgd - nbbkgd;
 
-	      sprintf (passeur, "bkgds" DIR_BAR "%s", bkgdname[(int)bgd]);
+	      sprintf (passeur, DIR_BKGDS "%s", bkgdname[(int)bgd]);
 
 	      if ((Carton_R2 = xload_pcx (passeur, Pal)) == NULL)
 		{
@@ -2384,7 +2385,7 @@ int startmenu (void)
   draw_sprite (virtscreen, tface1, 0, 0);
   blit_KOF91 ();
 
-  override_config_file ("bkgds" DIR_BAR "bkgd.ini");
+  override_config_file (DIR_BKGDS "bkgd.ini");
 
 
 	/*********** ALL SPRITES ARE NOW IN MEMORY ********/
@@ -2394,7 +2395,7 @@ int startmenu (void)
 
   foreground = animated = 0;
 
-  sprintf (file, "bkgds" DIR_BAR "%s", bkgdname[(int)bgd]);
+  sprintf (file, DIR_BKGDS "%s", bkgdname[(int)bgd]);
 
 #if GAME_DEBUG > 0
   sprintf (log_mess, "check bkgd path (again) :\n %s", file);
@@ -2424,7 +2425,7 @@ int startmenu (void)
     {
       animated = 0;
 
-      sprintf (file, "bkgds" DIR_BAR "frgds" DIR_BAR "%s", bkgdname[(int)bgd]);
+      sprintf (file, DIR_BKGDS "frgds" DIR_BAR "%s", bkgdname[(int)bgd]);
 
       if ((Frgd = xload_pcx (file, 0)) == NULL)
 	foreground = 0;

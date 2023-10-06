@@ -113,9 +113,10 @@ char gmode , diff;
 char story;
 int sel1, sel2;
 // string and key variables
-//char charname [ 1000 ][ 30 ];
-//char bkgdname [ 1000 ][ 30 ];
-//char flcname  [ 1000 ][ 30 ];
+char charname [ 1000 ][ 30 ] ;
+char bkgdname [ 200 ][ 30 ] ;
+char flcname [ 100 ][ 30 ] ;
+
 int nbchar;
 int nbbkgd;
 int nbflc;
@@ -192,6 +193,7 @@ int flag = 0;                     // sprite cycling flags
 int flag2 = 0;
 char hflag = 0, hflag2 = 0;
 char frameskip = 0;
+//char rround = 0;
 char skp_flag = 0;
 int sens1 = 0;                     // jump flags
 int sens2 = 0;
@@ -277,9 +279,9 @@ int opt;				//int para realizar compara��es
 int lineprint;
 
 void man( void );
-char get_kstatus ( char strg[] );
-char check_kstatus1 ( char ctrl_key );
-char check_kstatus2 ( char ctrl_key );
+//char get_kstatus ( char strg[] );
+//char check_kstatus1 ( char ctrl_key );
+//char check_kstatus2 ( char ctrl_key );
 void Intro( void );
 
 #endif

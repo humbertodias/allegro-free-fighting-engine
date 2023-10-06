@@ -124,10 +124,10 @@ struct PLAYER_DATA_STRUCT
 	struct SMOVE smovex;
 };
 
-static struct PLAYER_BMP_STRUCT Player1;
-static struct PLAYER_BMP_STRUCT Player2;
-static struct PLAYER_DATA_STRUCT p1;
-static struct PLAYER_DATA_STRUCT p2;
+struct PLAYER_BMP_STRUCT Player1;
+struct PLAYER_BMP_STRUCT Player2;
+struct PLAYER_DATA_STRUCT p1;
+struct PLAYER_DATA_STRUCT p2;
 /******************************************/
 
 extern DATAFILE *creditflic ;
@@ -180,7 +180,7 @@ extern BITMAP *Carton_WN ;
 extern BITMAP *Carton_KO ;
 
 #if TIMEOVER == 1
-static BITMAP *Carton_TO ;
+BITMAP *Carton_TO ;
 #endif
 
 extern BITMAP *novic0 ;
@@ -219,11 +219,11 @@ extern int opt; /* para as novas op��es, intro, display, winner e etc. */
 /* extern BITMAP *Blood ; */
 
 #if TIMEOVER > 0
-static BITMAP *B_clock[ 11 ];
+BITMAP *B_clock[ 11 ];
 #endif
 
 #if PERFECT == 1
-static BITMAP *B_prfct;
+BITMAP *B_prfct;
 #endif
 
 

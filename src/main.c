@@ -23,7 +23,6 @@
     *                                                                       *
     *************************************************************************
 */
-
 #include <stdio.h>
 #include <string.h>
 #include "allegro.h"
@@ -41,7 +40,7 @@
 #include "global.h"
 #include "main.h"
 
-int main(int argc, char ** argv)
+int main(int, char **)
 {
 	
 	int loop = 0;
