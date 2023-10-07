@@ -39,7 +39,7 @@
 
 
 
-static char c_midi_ok=0;
+char c_midi_ok=0;
 /*************************************************************************
 * __load_sprite__() look in macros.h the xload_pcx macro 
 *
@@ -54,9 +54,9 @@ BITMAP *__load_sprite__( const char *file, PALLETE Pal, char *n_file , int n_lin
 BITMAP * __load_sprite__( const char * file, PALLETE Pal )
 {
 #endif
-	static BITMAP *p1;
-	static BITMAP *p2;
-	static int missing;
+	BITMAP *p1;
+	BITMAP *p2;
+	int missing;
 
 	missing=0;
 #if GAME_DEBUG > 0
@@ -157,7 +157,7 @@ MIDI *__xload_midi__( const char * file )
 {
 #endif	
 	MIDI * tmpmidi;
-	static int missing;
+	int missing;
 
 	missing=0;
 #if GAME_DEBUG > 0
@@ -190,7 +190,7 @@ SAMPLE *__xload_sample__( const char * file )
 {
 #endif	
         SAMPLE *tmpsample;
-	static char missing;
+	char missing;
 
 	missing=0;
 	
@@ -219,8 +219,8 @@ char check_file( const char * file, char * n_file , int n_line )
 char check_file( const char * file )
 {
 #endif
-        static FILE *tmpfile;
-	static char missing; 
+        FILE *tmpfile;
+	char missing;
 
         missing =0 ;
 	if ( ( tmpfile=fopen( file, "r" ) ) == NULL )
@@ -245,8 +245,8 @@ char check_file( const char * file )
 }
 /****************************************/
 char file_missing( const char * file ){
-        static FILE *tmpfile;
-        static char missing;
+        FILE *tmpfile;
+        char missing;
                                                                                 
         missing =0;
         if ( ( tmpfile=fopen( file, "r" ) ) == NULL )

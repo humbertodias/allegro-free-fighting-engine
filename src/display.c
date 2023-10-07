@@ -36,140 +36,140 @@
           ***** CHECK AND UPDATE LIFEBARS ******
 ****************************************************************************/
 #if GAME_DEBUG > 0
-static int cicles=0 ;  // cicles
+int cicles=0 ;  // cicles
 #endif
 
-static int slowdown, slowdown_end_round;
-static BITMAP *disp_up;
-static BITMAP *disp_down;
-static int up_x, down_x;
+int slowdown, slowdown_end_round;
+BITMAP *disp_up;
+BITMAP *disp_down;
+int up_x, down_x;
 
-static int display_up;
-static int display_down;
-static int up_h ;
-static int down_h ;
+int display_up;
+int display_down;
+int up_h ;
+int down_h ;
 
-static int up_x ;
-static int down_x ;
+int up_x ;
+int down_x ;
 
-static int p1_name;
-static int p2_name;
+int p1_name;
+int p2_name;
 
-static int p1_name_x ;
-static int p1_name_y ;
+int p1_name_x ;
+int p1_name_y ;
 
-static int p2_name_x ;
-static int p2_name_y ;
+int p2_name_x ;
+int p2_name_y ;
 
 /*Read border of lifebar parameters*/
-static int p1_lifebar_border ;
-static int p2_lifebar_border ;
+int p1_lifebar_border ;
+int p2_lifebar_border ;
 
-static int p1_lifebar_border_x ;
-static int p2_lifebar_border_x ;
+int p1_lifebar_border_x ;
+int p2_lifebar_border_x ;
 
-static int p1_lifebar_border_y ;
-static int p2_lifebar_border_y ;
+int p1_lifebar_border_y ;
+int p2_lifebar_border_y ;
 
 /*Read border parameters*/
-static int p1_lifebar ;
-static int p2_lifebar ;
+int p1_lifebar ;
+int p2_lifebar ;
 
-static int p1_lifebar_x ;
-static int p2_lifebar_x ;
+int p1_lifebar_x ;
+int p2_lifebar_x ;
 
-static int p1_lifebar_y ;
-static int p2_lifebar_y ;
+int p1_lifebar_y ;
+int p2_lifebar_y ;
 
 /*LIFE FACE*/
 
-static int p1_life_face ;
-static int p1_life_face_x ;
-static int p1_life_face_y ;
+int p1_life_face ;
+int p1_life_face_x ;
+int p1_life_face_y ;
 
-static int p2_life_face ;
-static int p2_life_face_x ;
-static int p2_life_face_y ;
+int p2_life_face ;
+int p2_life_face_x ;
+int p2_life_face_y ;
 /* Life Face BORDER*/
-static int p1_life_face_border ;
-static int p1_life_face_border_x ;
-static int p1_life_face_border_y ;
+int p1_life_face_border ;
+int p1_life_face_border_x ;
+int p1_life_face_border_y ;
                                                                                 
-static int p2_life_face_border ;
-static int p2_life_face_border_x ;
-static int p2_life_face_border_y ;
+int p2_life_face_border ;
+int p2_life_face_border_x ;
+int p2_life_face_border_y ;
 
 
 /*VICTORY FLAGS*/
-static int p1_victory_flag ;
-static int p1_victory_flag_x ;
-static int p1_victory_flag_y ;
+int p1_victory_flag ;
+int p1_victory_flag_x ;
+int p1_victory_flag_y ;
 
-static int p2_victory_flag ;
-static int p2_victory_flag_x ;
-static int p2_victory_flag_y ;
+int p2_victory_flag ;
+int p2_victory_flag_x ;
+int p2_victory_flag_y ;
 
 /*BORDER OF POWERBAR*/
-static int p1_powerbar_border;
-static int p2_powerbar_border;
+int p1_powerbar_border;
+int p2_powerbar_border;
 
-static int p1_powerbar_border_x;
-static int p1_powerbar_border_y;
+int p1_powerbar_border_x;
+int p1_powerbar_border_y;
 
-static int p2_powerbar_border_x;
-static int p2_powerbar_border_y;
+int p2_powerbar_border_x;
+int p2_powerbar_border_y;
 
 /* POWERBAR */
-static int p1_powerbar;
-static int p2_powerbar;
+int p1_powerbar;
+int p2_powerbar;
 
-static int p1_powerbar_x;
-static int p1_powerbar_y;
+int p1_powerbar_x;
+int p1_powerbar_y;
 
-static int p2_powerbar_x;
-static int p2_powerbar_y;
+int p2_powerbar_x;
+int p2_powerbar_y;
 
 #if TIMEOVER > 0 
 /*BORDER OF POWERBAR*/
-static int timer_border;
+int timer_border;
 
-static int timer_border_x;
-static int timer_border_y;
+int timer_border_x;
+int timer_border_y;
 
 /* TIMER */
-static int timer_r;
-static int timer_l;
+int timer_r;
+int timer_l;
 
-static int timer_r_x;
-static int timer_r_y;
+int timer_r_x;
+int timer_r_y;
 
-static int timer_l_x;
-static int timer_l_y;
+int timer_l_x;
+int timer_l_y;
 
-static int timer_c_x;
-static int timer_c_y;
+int timer_c_x;
+int timer_c_y;
 
-static int timer_center;
+int timer_center;
 
-static int t_clock;
-static int t_clock_ini;
-static int t_short;
-static int t_decrement;
-static int clock_frame;
-static char s_cron[] = "99";
-static int c_dez, c_uni;
+int t_clock;
+int t_clock_ini;
+int t_short;
+int t_decrement;
+int clock_frame;
+char s_cron[] = "99999";
+int c_dez, c_uni;
 #endif
 
 /*monitor special variables*/
 
-static char name_vars[DEF_MAX_MONITOR_VARS][40];
+char name_vars[DEF_MAX_MONITOR_VARS][40];
 
-static int *addr_vars[DEF_MAX_MONITOR_VARS]; 
+int *addr_vars[DEF_MAX_MONITOR_VARS];
 
-static int user_vars[DEF_MAX_USER_VARS];
+int user_vars[DEF_MAX_USER_VARS];
 
-static int current_var;
-static int current_user_var;
+int current_var;
+int current_user_var;
 
 /******************************************/
 void disp_ini_var( void ){
@@ -211,8 +211,8 @@ void displays( void )
 /*****************************************/
 void initdisplay( void )
 {
-	static int up_h, down_h; 
-	static char temp[ 4 ];
+	int up_h, down_h;
+	char temp[ 4 ];
         TRON("ak1");
 	override_config_file( "game.ini" );
 	set_config_file( "game.ini" );
@@ -241,7 +241,7 @@ void initdisplay( void )
 	
 	t_short = xget_config_int( "timer", "t_short", 0 );
 	disp_put_var("t_short",&t_short);
-	
+
 	sprintf( s_cron, "%d", t_clock_ini );
 #endif 
 	/*--------------------------------------------------------------*/
@@ -646,13 +646,10 @@ void refresh_powerbar( void )
 #if TIMEOVER > 0
 void refresh_timer( void )
 {
-	/*static int
-	static 
-	 timer_border = xget_config_int("display","timer_border",1);
-	 
+     timer_border = xget_config_int("display","timer_border",1);
 	 timer_border_x = xget_config_int("display","timer_border_x",147);
 	 timer_border_y = xget_config_int("display","timer_border_y",22);
-	*/
+
 
 #if GAME_DEBUG >= 2	
 	TRON( "CHECK CLOCK" );
@@ -684,7 +681,7 @@ void refresh_timer( void )
 			c_uni = 0;
 	
 
-#if GAME_DEBUG >= 2 
+#if GAME_DEBUG >= 2
             sprintf( log_mess, "t_clock: %d | {%d}{%d}", t_clock, c_dez, c_uni );
 	    TRON( log_mess );
 #endif
@@ -887,8 +884,8 @@ void refresh_life_faces (void)
 /********************************************************/
 int xget_config_int( char *section, char *var_name, int val_defa )
 {
-	static int val_ret = 0;
-	static char exist[6] = "xxx";
+	int val_ret = 0;
+	char exist[6] = "xxx";
 
     const char * str = get_config_string( section, var_name, "xxx" );
     sprintf( exist, "%s", str );
@@ -906,7 +903,7 @@ int xget_config_int( char *section, char *var_name, int val_defa )
 /********************************************************/
 char *xget_config_string( char *section, char *var_name, char *val_defa )
 {
-	static char sval_ret[ 6 ] = "xxx";
+	char sval_ret[ 6 ] = "xxx";
 
 	/* sprintf( sval_ret,"%s", "xxx" ); */
 	sprintf( sval_ret, "%s", get_config_string( section, var_name, "xxx" ) );
@@ -921,7 +918,7 @@ char *xget_config_string( char *section, char *var_name, char *val_defa )
 /****************************************************************************/
 void save_display( void )
 {
-	static char temp[ 4 ];
+	char temp[ 4 ];
 	if ( display_up == 1 )
 		sprintf( temp, "on" );
 	else

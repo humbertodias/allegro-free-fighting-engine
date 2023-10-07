@@ -29,9 +29,9 @@
 #include "loads.h"
 #include "wavsounds.h"
 
-static SAMPLE *xwav[ DEF_MAX_WAV_SOUNDS ];
+SAMPLE *xwav[ DEF_MAX_WAV_SOUNDS ];
 
-static int snd_vol;
+int snd_vol;
 
 
 

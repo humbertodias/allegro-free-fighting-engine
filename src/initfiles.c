@@ -351,8 +351,8 @@ INI_inifile ini_get_section(char *sname_file)
 
 /*********************************************/
 void getcolorstr(int *r,int *g,int *b, char color[20]) {
-	static char rgb[4][5];
-	static int i, l, ll;
+	char rgb[4][5];
+	int i, l, ll;
 
 
 	l=0; ll=0;

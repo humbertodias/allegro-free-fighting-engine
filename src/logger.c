@@ -38,7 +38,7 @@
 #if GAME_DEBUG > 0
 void __tron__( char *log_mess, char *n_file , int n_line )
 {
-	static FILE *logfile;
+	FILE *logfile;
 	
 
 	if ( ( logfile = fopen( "kof2003.log", "a" ) ) == ( FILE* ) NULL )
@@ -88,7 +88,7 @@ void __tronstart__( char *log_mess, char *n_file , int n_line )
 /*******************************/
 void __error__( char *log_mess, char *n_file , int n_line )
 {
-	static FILE * logfile;
+	FILE * logfile;
 
 	if ( ( logfile = fopen( "kof2003.log", "a" ) ) == ( FILE* ) NULL )
 	{
