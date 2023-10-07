@@ -102,6 +102,7 @@ Moah (moah@online.fr) , 10/03/2000
 
 #include "allegro.h"
 #include "allegro/internal/aintern.h"
+#include <dirent.h>
 
 //#include "xaudio.h"
 //#include "decoder.h"
@@ -178,13 +179,6 @@ void MP3_Exit (void) ;
 int MP3_Open (char *mp3file) ;
 int MP3_Play () ;
 int MP3_Close () ;
-
-/* structure for the directory scanning routines */
-typedef struct FFIND_INFO {
-   struct _finddata_t info;
-   long handle;
-   int attrib;
-} FFIND_INFO;
 
 
 // global variables
@@ -1018,11 +1012,11 @@ else
    loadsounds();
    set_volume (snd_vol , midi_vol);
 
-   nbchar = scan_files( "sprites\\*" , FA_DIREC, 0 ) ;
+   nbchar = scan_files( DIR_SPRITES "*" , FA_DIREC, 0 ) ;
 
-   nbbkgd = scan_files( "bkgds\\*.pcx" , 0, 1 ) ;
+   nbbkgd = scan_files( DIR_BKGDS "*.pcx" , 0, 1 ) ;
 
-   nbflc = scan_files( "bkgds\\*.flc" , 0, 2 ) ;
+   nbflc = scan_files( DIR_BKGDS "*.flc" , 0, 2 ) ;
 
    for ( cx = 0 ; cx < nbflc ; cx++ )
    {
@@ -1058,7 +1052,7 @@ else
    simpact_nbf = get_config_int ( 0 , "simpact_nbf" , 1 ) ;
    bimpact_nbf = get_config_int ( 0 , "bimpact_nbf" , 1 ) ;
 
-   if((Lock = load_pcx ( "sprites\\lock.pcx" , 0 ))==NULL)
+   if((Lock = load_pcx ( DIR_SPRITES "lock.pcx" , 0 ))==NULL)
    {
 		allegro_message("lock.pcx missing");
 		exit(0);
@@ -1068,7 +1062,7 @@ else
    {
 	gcvt ( num , 1 , tilenum ) ;
 
-	strcpy ( file, "sprites\\wimpact" );
+	strcpy ( file, DIR_SPRITES "wimpact" );
 	strcat ( file, tilenum );
 	strcat ( file, ".pcx" );
 
@@ -1083,7 +1077,7 @@ else
    {
 	gcvt ( num , 1 , tilenum ) ;
 
-	strcpy ( file, "sprites\\simpact" );
+	strcpy ( file, DIR_SPRITES "simpact" );
 	strcat ( file, tilenum );
 	strcat ( file, ".pcx" );
 
@@ -1094,7 +1088,7 @@ else
    {
 	gcvt ( num , 1 , tilenum ) ;
 
-	strcpy ( file, "sprites\\bimpact" );
+	strcpy ( file, DIR_SPRITES "bimpact" );
 	strcat ( file, tilenum );
 	strcat ( file, ".pcx" );
 
@@ -1148,9 +1142,9 @@ else
 
    for ( cx = 0 ; cx < nbchar ; cx++ )
    {
-	   strcpy ( passeur, "sprites\\" );
+	   strcpy ( passeur, DIR_SPRITES );
 	   strcat ( passeur, charname[cx] );
-	   strcat ( passeur, "\\static1.pcx" );
+	   strcat ( passeur, DIR_BAR "static1.pcx" );
 
 	   if ( load_pcx (passeur ,Pal ) != NULL )
 	   {
@@ -1159,9 +1153,9 @@ else
 
 	   else present[cx] = 0 ;
 
-	   strcpy ( passeur, "sprites\\" );
+	   strcpy ( passeur, DIR_SPRITES );
 	   strcat ( passeur, charname[cx] );
-	   strcat ( passeur, "\\char.ini" );
+	   strcat ( passeur, DIR_BAR "char.ini" );
 
 	   override_config_file( passeur );
 
@@ -1184,7 +1178,7 @@ else
 
 
 
-   if ( (music = load_midi ("midi\\select.mid" ))==NULL)
+   if ( (music = load_midi (DIR_MIDI "select.mid" ))==NULL)
 	  {
 			allegro_message("failed loading midi");
 			allegro_exit();
@@ -1217,12 +1211,12 @@ Demoniac:
 
    Bar2 = create_bitmap(127,7) ;
 
-   Carton_KO = load_pcx( "sprites\\mode.pcx", Pal);
+   Carton_KO = load_pcx( DIR_SPRITES "mode.pcx", Pal);
 
-   Carton_WN = load_pcx( "sprites\\pick.pcx", Pal);
+   Carton_WN = load_pcx( DIR_SPRITES "pick.pcx", Pal);
 
 #if TIMEOVER == 1
-   Carton_TO = load_pcx( "sprites\\timeup.pcx", Pal);
+   Carton_TO = load_pcx( DIR_SPRITES "timeup.pcx", Pal);
 #endif
 
    gmode = 2 ;
@@ -1336,7 +1330,7 @@ Demoniac:
 
 	   diff = 1 ;
 
-	   Carton_KO = load_pcx( "sprites\\diff.pcx", Pal);
+	   Carton_KO = load_pcx( DIR_SPRITES "diff.pcx", Pal);
 
 	   clear_keybuf() ;
 
@@ -1431,7 +1425,7 @@ allegro_message("step 3 : clear selecteurs");
 if (debug)
 allegro_message("step 4 : load midi");
 
-   if ( (music = load_midi ("midi\\select.mid" ))==NULL)
+   if ( (music = load_midi (DIR_MIDI "select.mid" ))==NULL)
    {
 			allegro_message("failed loading midi");
 			allegro_exit();
@@ -1493,12 +1487,12 @@ allegro_message("step 8 : build up selecteurs");
 
 		while ( fx>(nbchar-1) ) fx = fx - nbchar ;
 
-		strcpy ( file, "sprites\\" );
+		strcpy ( file, DIR_SPRITES );
 		strcat ( file, charname[fx] );
-		strcat ( file, "\\selsmall.pcx" );
+		strcat ( file, DIR_BAR "selsmall.pcx" );
 
 		if ( (Icon2 = load_pcx ( file , Pal) ) == NULL )
-		Icon2 = load_pcx ( "sprites\\selmiss.pcx", Pal);
+		Icon2 = load_pcx ( DIR_SPRITES "selmiss.pcx", Pal);
 
 		if (Icon2!=NULL)
 		{
@@ -1534,7 +1528,7 @@ allegro_message("step 8 : build up selecteurs");
 if (debug)
 allegro_message("step 9 : load pattern");
 
-   Carton_KO = load_pcx( "sprites\\pattern.pcx", Pal);
+   Carton_KO = load_pcx( DIR_SPRITES "pattern.pcx", Pal);
 
    drawing_mode(DRAW_MODE_COPY_PATTERN, Carton_KO, 0, 0);
 
@@ -1586,17 +1580,17 @@ if ( (oldsel1 != sel1) || (oldsel2 != sel2) )
 
 if ( p2_sel &&(oldsel2 != sel2) )
 {
-	strcpy ( passeur, "sprites\\" );
+	strcpy ( passeur, DIR_SPRITES );
 	strcat ( passeur, charname[sel2] );
-	strcat ( passeur, "\\static1.pcx" );
+	strcat ( passeur, DIR_BAR "static1.pcx" );
 
 	if ( load_pcx( passeur , Pal ) == NULL )
 
 	{
-		Face2 = load_pcx ( "sprites\\none.pcx", Pal);
+		Face2 = load_pcx ( DIR_SPRITES "none.pcx", Pal);
 		draw_sprite( virtscreen , Face2, 220 , 45 ) ;
 
-		Icon2 = load_pcx ( "sprites\\selmiss.pcx", Pal);
+		Icon2 = load_pcx ( DIR_SPRITES "selmiss.pcx", Pal);
 		//draw_sprite( virtscreen , Icon2, 145 , 174 ) ;
 
         textout_centre ( virtscreen , font ,
@@ -1608,13 +1602,13 @@ if ( p2_sel &&(oldsel2 != sel2) )
 	else
 
 	{
-		strcpy ( file, "sprites\\" );
+		strcpy ( file, DIR_SPRITES );
 		strcat ( file, charname[sel2] );
-		strcat ( file, "\\selbig.pcx" );
+		strcat ( file, DIR_BAR "selbig.pcx" );
 
-		strcpy ( passeur, "sprites\\" );
+		strcpy ( passeur, DIR_SPRITES );
 	    strcat ( passeur, charname[sel2] );
-	    strcat ( passeur, "\\char.ini" );
+	    strcat ( passeur, DIR_BAR "char.ini" );
 
 		override_config_file( passeur );
 
@@ -1642,7 +1636,7 @@ if ( p2_sel &&(oldsel2 != sel2) )
 
         else
         {
-			Face2 = load_pcx ( "sprites\\miss.pcx", Pal);
+			Face2 = load_pcx ( DIR_SPRITES "miss.pcx", Pal);
 
 			draw_sprite( virtscreen , Face2, 220 , 45 ) ;
 		}
@@ -2172,7 +2166,7 @@ if (story)
 
 			blit_KOF91();
 
-			while (!retrace_count) ;;
+			while (!retrace_count) ;
 
 			rest(20);
 
@@ -2264,7 +2258,7 @@ allegro_message("check strings :\n  char1 : %s\n  char2 : %s",
 
 		poll_joystick();
 
-		while (!retrace_count) ;;
+		while (!retrace_count) ;
 
 		rest(20);
 
@@ -3582,7 +3576,7 @@ set_palette( fli_palette );
 
 						blit_Bkgd() ;
 
-						while (!retrace_count) ;;
+						while (!retrace_count) ;
 
 					}
 
@@ -3626,7 +3620,7 @@ set_palette( fli_palette );
 
 						blit_Bkgd() ;
 
-						while (!retrace_count) ;;
+						while (!retrace_count) ;
 						
 					}
 
@@ -3684,7 +3678,7 @@ set_palette( fli_palette );
 
         blit ( zoomscreen , virtscreen , cx , zoomsup, 0, 0, 320, 200 ) ;
 
-		while (!retrace_count) ;;
+		while (!retrace_count) ;
 	}
 
 		flag++;
@@ -4251,7 +4245,7 @@ if (!frameskip)
 	}
 
 
-	while (!retrace_count);;
+	while (!retrace_count);
 
 // end of the big drawing loop
      
@@ -8826,6 +8820,8 @@ if ( ( life1 <= 0 ) || ( life2 <= 0 ) )
 
    goto Demoniac;
 
+   return 0;
+
 }
 
 
@@ -8942,7 +8938,7 @@ int mvb = 20;
 
 			if (!mp3) rest(15);
 
-			while (!retrace_count);;
+			while (!retrace_count);
 	   }
 
 	   else
@@ -9044,47 +9040,47 @@ void blit_Bkgd (void)
 
 void loadsounds(void)
 {
-//        hit_alwa = load_sample ("wav\\hit_alwa.wav") ;
+//        hit_alwa = load_sample (DIR_WAV "hit_alwa.wav") ;
 
 
-        if ( (rd1 = load_sample ("wav\\rd1.wav"))==NULL)
+        if ( (rd1 = load_sample (DIR_WAV "rd1.wav"))==NULL)
 		{
 			allegro_message("can't load sounds\n"
 						"You probably did not unzip the archive correctly");
 			exit(0);
 		}
-        rd2 = load_sample ("wav\\rd2.wav") ;
-        rd3 = load_sample ("wav\\rd3.wav") ;
+        rd2 = load_sample (DIR_WAV "rd2.wav") ;
+        rd3 = load_sample (DIR_WAV "rd3.wav") ;
 
-        fight = load_sample ("wav\\fight.wav") ;
+        fight = load_sample (DIR_WAV "fight.wav") ;
 
-//        hit_good = load_sample ("wav\\hit_good.wav") ;
+//        hit_good = load_sample (DIR_WAV "hit_good.wav") ;
 
-		wp_alwa = load_sample ("wav\\wp_alwa.wav") ;
-		wk_alwa = load_sample ("wav\\wk_alwa.wav") ;
-		sp_alwa = load_sample ("wav\\sp_alwa.wav") ;
-		sk_alwa = load_sample ("wav\\sk_alwa.wav") ;
+		wp_alwa = load_sample (DIR_WAV "wp_alwa.wav") ;
+		wk_alwa = load_sample (DIR_WAV "wk_alwa.wav") ;
+		sp_alwa = load_sample (DIR_WAV "sp_alwa.wav") ;
+		sk_alwa = load_sample (DIR_WAV "sk_alwa.wav") ;
 
-		hit1 = load_sample ("wav\\hit1.wav") ;
-		hit2 = load_sample ("wav\\hit2.wav") ;
+		hit1 = load_sample (DIR_WAV "hit1.wav") ;
+		hit2 = load_sample (DIR_WAV "hit2.wav") ;
 
-		block_snd = load_sample ("wav\\block.wav") ;
+		block_snd = load_sample (DIR_WAV "block.wav") ;
 
-        ko_snd = load_sample ("wav\\ko.wav") ;
-        argh_snd = load_sample ("wav\\argh1.wav") ;
-        female_snd = load_sample ("wav\\argh2.wav") ;
+        ko_snd = load_sample (DIR_WAV "ko.wav") ;
+        argh_snd = load_sample (DIR_WAV "argh1.wav") ;
+        female_snd = load_sample (DIR_WAV "argh2.wav") ;
 
 #if TIMEOVER ==1
-        to_snd = load_sample ("wav\\timeup.wav") ;
+        to_snd = load_sample (DIR_WAV "timeup.wav") ;
 #endif                
         
 #if PERFECT == 1
-		prfct_snd = load_sample("wav\\perfect.wav" );
+		prfct_snd = load_sample(DIR_WAV "perfect.wav" );
 #endif
 
-        done = load_sample ("wav\\done.wav") ;
-        buzz = load_sample ("wav\\buzz.wav") ;
-        bing = load_sample ("wav\\bing.wav") ;
+        done = load_sample (DIR_WAV "done.wav") ;
+        buzz = load_sample (DIR_WAV "buzz.wav") ;
+        bing = load_sample (DIR_WAV "bing.wav") ;
 
 }
 
@@ -11780,7 +11776,7 @@ char c ;
 
 	switch ( c )
 	{
-		case 'U' : if ( c = strg[1] )
+		case 'U' : if ( c == strg[1] )
 				   {
 					   if (c == 'L') rtn_value = 7 ;
 					   else
@@ -11788,7 +11784,7 @@ char c ;
 				   }		   
 				   else rtn_value = 1 ; break ;
 
-		case 'D' : if ( c = strg[1] )
+		case 'D' : if ( c == strg[1] )
 				   {
 					   if (c == 'L') rtn_value = 5 ;
 					   else
@@ -11993,7 +11989,8 @@ int scan_files(char *name, int attrib, char what )
    if (!_al_file_isok(name)) 
       return 0;
 
-   dta = _al_findfirst(name, attrib, dta_name, &dta_attrib);
+   /*
+   dta = al_findfirst(name, attrib, dta_name, &dta_attrib);
 
    if (!dta)
       return 0;
@@ -12026,10 +12023,53 @@ int scan_files(char *name, int attrib, char what )
 
       if (*allegro_errno != 0)
 	 break;
-      
-   } while (_al_findnext(dta, dta_name, &dta_attrib) == 0);
+   } while (al_findnext(dta, dta_name, &dta_attrib) == 0);
+   */
 
-   _al_findclose(dta);
+   al_findclose(dta);
+
+    DIR *d;
+    struct dirent *dir;
+    d = opendir(".");
+    if (d)
+    {
+        while ((dir = readdir(d)) != NULL)
+        {
+//            printf("%s\n", dir->d_name);
+            sprintf(dta_name, "%s", dir->d_name);
+
+            replace_filename(buf, name, dta_name, sizeof(buf));
+            //get the filename buffer here !!!!
+            if (what==0)
+            {
+                if (!ustrchr(buf, '.'))
+                {
+                    ustrncpy( charname[c], buf+8, 30 );
+                    c++ ;
+                }
+            }
+
+            else
+            if (what==1)
+            {
+                ustrncpy( bkgdname[c], buf+6, 30 );
+                c++ ;
+            }
+
+            else
+            if (what==2)
+            {
+                ustrncpy( flcname[c], buf+6, 30 );
+                c++ ;
+            }
+
+            if (*allegro_errno != 0)
+                break;
+
+        }
+        closedir(d);
+    }
+
 
    errno = *allegro_errno = 0;
    return c;
