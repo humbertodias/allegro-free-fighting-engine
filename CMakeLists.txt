@@ -16,6 +16,7 @@ IF (APPLE)
 ENDIF ()
 
 file(GLOB SOURCE src/*.c)
+set(SOURCE "Kof91.c")
 add_executable(${PROJECT_NAME} ${SOURCE})
 
 # Add directories to the include search path

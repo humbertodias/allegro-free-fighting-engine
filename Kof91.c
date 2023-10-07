@@ -158,7 +158,7 @@ Moah (moah@online.fr) , 10/03/2000
 #define SHADOWS 0
 #define CLONE 1
 
-#define GAME_DEBUG 0
+#define GAME_DEBUG 1
 
 ////////////////////
 
@@ -528,7 +528,7 @@ void GFBallX2 (int gueu,int x , int y) ;
 
 /******************************************/
 
-int scan_files(char *name, int attrib, char what );
+int scan_files(char *name, int attrib, char what, char *ext );
 
 void blit_KOF91 (void) ;
 
@@ -555,7 +555,7 @@ char story ;
 
 int sel1,sel2 ;
 
-char debug ;
+char debug;
 
 
 // string and key variables
@@ -631,7 +631,7 @@ int ai_static ;
 #if TCLOCK == 1 
    int t_clock, t_clock_ini, t_short, t_decrement; 
    int clock_frame ;
-   char s_cron[] = "99" ;
+   char s_cron[] = "999999" ;
    int c_dez, c_uni;		    
 #endif
 
@@ -1012,11 +1012,11 @@ else
    loadsounds();
    set_volume (snd_vol , midi_vol);
 
-   nbchar = scan_files( DIR_SPRITES "*" , FA_DIREC, 0 ) ;
+   nbchar = scan_files( DIR_SPRITES  , FA_DIREC, 0, "*" ) ;
 
-   nbbkgd = scan_files( DIR_BKGDS "*.pcx" , 0, 1 ) ;
+   nbbkgd = scan_files( DIR_BKGDS  , 0, 1, "pcx" ) ;
 
-   nbflc = scan_files( DIR_BKGDS "*.flc" , 0, 2 ) ;
+   nbflc = scan_files( DIR_BKGDS  , 0, 2, "flc" ) ;
 
    for ( cx = 0 ; cx < nbflc ; cx++ )
    {
@@ -1710,7 +1710,7 @@ if (oldsel1 != sel1)
         else
 
 		{
-            Face1 = load_pcx ( "sprites\\miss.pcx", Pal);
+            Face1 = load_pcx ( DIR_SPRITES "miss.pcx", Pal);
 
             draw_sprite( virtscreen , Face1, 0 , 45 ) ;
 		}
@@ -1827,7 +1827,7 @@ if (fy<1)
 			strcat ( file, DIR_BAR "selsmall.pcx" );
 
 			if ( (Icon2 = load_pcx ( file , Pal) ) == NULL )
-			Icon2 = load_pcx ( "sprites\\selmiss.pcx", Pal);
+			Icon2 = load_pcx ( DIR_SPRITES "selmiss.pcx", Pal);
 			else
 			if(secretchar[fx])
 			{
@@ -1862,7 +1862,7 @@ if (fy<1)
 			strcat ( file, DIR_BAR "selsmall.pcx" );
 
 			if ( (Icon2 = load_pcx ( file , Pal) ) == NULL )
-			Icon2 = load_pcx ( "sprites\\selmiss.pcx", Pal);
+			Icon2 = load_pcx ( DIR_SPRITES "selmiss.pcx", Pal);
 			else
 			if(secretchar[fx])
 			{
@@ -1890,8 +1890,9 @@ if (fy<1)
            oldsel1 = sel1 ;
 
 		   poll_joystick() ;
-
-		   if ( P1_WK || P1_SK || P1_WP || P1_SP )
+            // TODO
+            char enter = key[KEY_ENTER];
+		   if ( P1_WK || P1_SK || P1_WP || P1_SP || enter)
 
                {
 	                strcpy ( passeur, DIR_SPRITES );
@@ -1937,7 +1938,7 @@ if (fy<1)
 				strcat ( file, DIR_BAR "selsmall.pcx" );
 
 				if ( (Icon1 = load_pcx ( file , Pal) ) == NULL )
-				Icon1 = load_pcx ( "sprites\\selmiss.pcx", Pal);
+				Icon1 = load_pcx ( DIR_SPRITES "selmiss.pcx", Pal);
 				else
 				if(secretchar[fx])
 				{
@@ -1972,7 +1973,7 @@ if (fy<1)
 				strcat ( file, DIR_BAR "selsmall.pcx" );
 
 				if ( (Icon1 = load_pcx ( file , Pal) ) == NULL )
-				Icon1 = load_pcx ( "sprites\\selmiss.pcx", Pal);
+				Icon1 = load_pcx ( DIR_SPRITES "selmiss.pcx", Pal);
 				else
 				if(secretchar[fx])
 				{
@@ -2025,7 +2026,7 @@ if (story)
 		for ( x = 0 ; x < nbchar ; x++ )
 		secretchar[x] = 0 ;
 
-		if((Selecteur1 = load_pcx ( "sprites\\end.pcx" , 0 ))==NULL)
+		if((Selecteur1 = load_pcx ( DIR_SPRITES "end.pcx" , 0 ))==NULL)
 		{
 			allegro_message("end.pcx missing");
 			exit(0);
@@ -2201,7 +2202,7 @@ allegro_message("check strings :\n  char1 : %s\n  char2 : %s",
 
    Carton_R1 = create_bitmap(260, 160);
 
-   strcpy ( passeur, "bkgds\\" );
+   strcpy ( passeur, DIR_BKGDS );
    strcat ( passeur, bkgdname[bgd] );
 
 	if ( (Carton_R2 = load_pcx (passeur ,Pal )) == NULL )
@@ -2289,7 +2290,7 @@ if (fx<1)
 
 		while ( bgd<0 ) bgd = bgd + nbbkgd ;
 
-		strcpy ( passeur, "bkgds\\" );
+		strcpy ( passeur, DIR_BKGDS );
 	    strcat ( passeur, bkgdname[bgd] );
 
 		if ( (Carton_R2 = load_pcx (passeur ,Pal )) == NULL )
@@ -2324,7 +2325,7 @@ if (fx<1)
 
 		while ( bgd>(nbbkgd-1) ) bgd = bgd - nbbkgd ;
 
-		strcpy ( passeur, "bkgds\\" );
+		strcpy ( passeur, DIR_BKGDS );
 	    strcat ( passeur, bkgdname[bgd] );
 
 		if ( (Carton_R2 = load_pcx (passeur ,Pal )) == NULL )
@@ -3290,7 +3291,7 @@ allegro_message("check char2 path :\n %s", passeur );
    rectfill(virtscreen, 40, 150,250,180, sel_player1);
    blit_KOF91();
 
-   override_config_file( "bkgds\\bkgd.ini" );
+   override_config_file( DIR_BKGDS "bkgd.ini" );
 
 
 /*********** ALL SPRITES ARE NOW IN MEMORY ********/
@@ -3300,7 +3301,7 @@ allegro_message("check char2 path :\n %s", passeur );
 
 foreground = animated = 0 ;
 
-   strcpy ( file , "bkgds\\" );
+   strcpy ( file , DIR_BKGDS );
    strcat ( file , bkgdname[bgd] );
 
 if (debug)
@@ -3329,7 +3330,7 @@ allegro_message("check bkgd path (again) :\n %s", file );
 		  {
 			  animated = 0 ;
 
-			  strcpy ( file , "bkgds\\frgds\\" );
+			  strcpy ( file , DIR_BKGDS "frgds" DIR_BAR );
 			  strcat ( file , bkgdname[bgd] );
 
 			  if ((Frgd = load_pcx( file , 0 ))==NULL)
@@ -3354,7 +3355,7 @@ allegro_message("check bkgd path (again) :\n %s", file );
 
 	  y = ustrlen( bkgdname[bgd] );
 
-      strcpy ( file , "midi\\" );
+      strcpy ( file , DIR_MIDI );
 
       ustrncat( file , bkgdname[bgd], y-4 );
 
@@ -3372,52 +3373,52 @@ allegro_message("check bkgd path (again) :\n %s", file );
 
    override_config_file( "game.ini" );
 
-   LBbanner = load_pcx( "sprites\\lifebars.pcx", 0);
+   LBbanner = load_pcx( DIR_SPRITES "lifebars.pcx", 0);
 
-   Bar = load_pcx( "sprites\\bar.pcx", 0);
+   Bar = load_pcx( DIR_SPRITES "bar.pcx", 0);
 
    draw_sprite_h_flip (Bar2, Bar, 0, 0) ; 
 
-   novic0 = load_pcx ( "sprites\\novic0.pcx", 0 );
-   novic1 = load_pcx ( "sprites\\novic1.pcx", 0 );
+   novic0 = load_pcx ( DIR_SPRITES "novic0.pcx", 0 );
+   novic1 = load_pcx ( DIR_SPRITES "novic1.pcx", 0 );
 
-   avic0 = load_pcx ( "sprites\\vic0.pcx", 0 );
-   avic1 = load_pcx ( "sprites\\vic1.pcx", 0 );
+   avic0 = load_pcx ( DIR_SPRITES "vic0.pcx", 0 );
+   avic1 = load_pcx ( DIR_SPRITES "vic1.pcx", 0 );
 
-   Blood = load_pcx ( "sprites\\lastpal.pcx", Pal );
+   Blood = load_pcx ( DIR_SPRITES "lastpal.pcx", Pal );
 
 
-   Carton_R1 = load_pcx("sprites\\round1.pcx", 0); 
+   Carton_R1 = load_pcx(DIR_SPRITES "round1.pcx", 0); 
 
-   Carton_R2 = load_pcx("sprites\\round2.pcx", 0); 
+   Carton_R2 = load_pcx(DIR_SPRITES "round2.pcx", 0); 
 
-   Carton_R3 = load_pcx("sprites\\round3.pcx", 0); 
+   Carton_R3 = load_pcx(DIR_SPRITES "round3.pcx", 0); 
 
-   Carton_FT = load_pcx("sprites\\fight.pcx", 0); 
+   Carton_FT = load_pcx(DIR_SPRITES "fight.pcx", 0); 
    
-   Carton_WN = load_pcx("sprites\\winner.pcx", 0); 
+   Carton_WN = load_pcx(DIR_SPRITES "winner.pcx", 0); 
 
-   Carton_KO = load_pcx("sprites\\ko.pcx", 0); 
+   Carton_KO = load_pcx(DIR_SPRITES "ko.pcx", 0); 
 
-   Power = load_pcx("sprites\\power.pcx", 0); 
+   Power = load_pcx(DIR_SPRITES "power.pcx", 0); 
 
-   PBar = load_pcx("sprites\\pbar.pcx", 0); 
+   PBar = load_pcx(DIR_SPRITES "pbar.pcx", 0); 
 
 #if TCLOCK == 1   
-   B_clock[0] = load_pcx("sprites\\0.pcx",0);
-   B_clock[1] = load_pcx("sprites\\1.pcx",0);
-   B_clock[2] = load_pcx("sprites\\2.pcx",0);
-   B_clock[3] = load_pcx("sprites\\3.pcx",0);
-   B_clock[4] = load_pcx("sprites\\4.pcx",0);
-   B_clock[5] = load_pcx("sprites\\5.pcx",0);
-   B_clock[6] = load_pcx("sprites\\6.pcx",0);
-   B_clock[7] = load_pcx("sprites\\7.pcx",0);
-   B_clock[8] = load_pcx("sprites\\8.pcx",0);
-   B_clock[9] = load_pcx("sprites\\9.pcx",0);
+   B_clock[0] = load_pcx(DIR_SPRITES "0.pcx",0);
+   B_clock[1] = load_pcx(DIR_SPRITES "1.pcx",0);
+   B_clock[2] = load_pcx(DIR_SPRITES "2.pcx",0);
+   B_clock[3] = load_pcx(DIR_SPRITES "3.pcx",0);
+   B_clock[4] = load_pcx(DIR_SPRITES "4.pcx",0);
+   B_clock[5] = load_pcx(DIR_SPRITES "5.pcx",0);
+   B_clock[6] = load_pcx(DIR_SPRITES "6.pcx",0);
+   B_clock[7] = load_pcx(DIR_SPRITES "7.pcx",0);
+   B_clock[8] = load_pcx(DIR_SPRITES "8.pcx",0);
+   B_clock[9] = load_pcx(DIR_SPRITES "9.pcx",0);
 #endif   
 
 #if PERFECT == 1
-   B_prfct = load_pcx("sprites\\perfect.pcx",0);
+   B_prfct = load_pcx(DIR_SPRITES "perfect.pcx",0);
 #endif
 
    textout_centre ( virtscreen , font ,
@@ -8732,7 +8733,7 @@ if ( ( life1 <= 0 ) || ( life2 <= 0 ) )
 
 		rest(500) ;
 
-		if (gmode) Carton_WN = load_bitmap ( "sprites\\lose.pcx" , 0 ) ;
+		if (gmode) Carton_WN = load_bitmap ( DIR_SPRITES "lose.pcx" , 0 ) ;
 
         rectfill ( virtscreen , 0 , 0 , 320 , 200 , 0 ) ;  
 
@@ -11973,10 +11974,9 @@ return rtnv ;
 }
 
 
-
-int scan_files(char *name, int attrib, char what ) 
+int scan_files(char *name, int attrib, char what, char *ext )
 {
-   char dta_name[512], buf[512];
+   char dta_name[512], buf[512], dta_ext[30];
    void *dta;
    int dta_attrib;
    int c = 0;
@@ -11989,77 +11989,43 @@ int scan_files(char *name, int attrib, char what )
    if (!_al_file_isok(name)) 
       return 0;
 
-   /*
-   dta = al_findfirst(name, attrib, dta_name, &dta_attrib);
-
-   if (!dta)
-      return 0;
-
-   do {
-      replace_filename(buf, name, dta_name, sizeof(buf));
-      //get the filename buffer here !!!!
-	  if (what==0)
-	  {
-		  if (!ustrchr(buf, '.'))
-		  {
-			ustrncpy( charname[c], buf+8, 30 );
-			c++ ;
-		  }
-	  }
-
-	  else
-	  if (what==1)
-	  {
-		ustrncpy( bkgdname[c], buf+6, 30 );
-		c++ ;
-	  }
-
-	  else
-	  if (what==2)
-	  {
-		ustrncpy( flcname[c], buf+6, 30 );
-		c++ ;
-	  }
-
-      if (*allegro_errno != 0)
-	 break;
-   } while (al_findnext(dta, dta_name, &dta_attrib) == 0);
-
-   al_findclose(dta);
-   */
-
     DIR *d;
     struct dirent *dir;
-    d = opendir(".");
+    d = opendir(name);
+    int len;
     if (d)
     {
         while ((dir = readdir(d)) != NULL)
         {
-//            printf("%s\n", dir->d_name);
+           // if (dir->d_type == DT_DIR) continue;
+            printf("%s\n", dir->d_name);
             sprintf(dta_name, "%s", dir->d_name);
 
             replace_filename(buf, name, dta_name, sizeof(buf));
+
+            len = ustrlen(buf);
+            if (len > 3) ustrncpy( dta_ext, buf + (len-3), 30 );
             //get the filename buffer here !!!!
             if (what==0)
             {
                 if (!ustrchr(buf, '.'))
                 {
-                    ustrncpy( charname[c], buf+8, 30 );
+                    ustrncpy( charname[c], buf+13, 30 );
                     c++ ;
                 }
             }
 
             else
-            if (what==1)
+            if (what==1 )
             {
-                ustrncpy( bkgdname[c], buf+6, 30 );
+                ustrncpy( bkgdname[c], buf+11, 30 );
                 c++ ;
             }
 
             else
-            if (what==2)
+            if (what==2 )
             {
-                ustrncpy( flcname[c], buf+6, 30 );
+                ustrncpy( flcname[c], buf+11, 30 );
                 c++ ;
             }
 
