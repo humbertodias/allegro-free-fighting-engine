@@ -1652,20 +1652,20 @@ if ( p2_sel &&(oldsel2 != sel2) )
 
 if (oldsel1 != sel1)
 {
-	strcpy ( passeur, "sprites\\" );
+	strcpy ( passeur, DIR_SPRITES );
 	strcat ( passeur, charname[sel1] );
-	strcat ( passeur, "\\static1.pcx" );
+	strcat ( passeur, DIR_BAR "static1.pcx" );
 
 	if ( load_pcx (passeur ,Pal ) == NULL )
 	{
-         Face1 = load_pcx ( "sprites\\none.pcx", Pal);
+         Face1 = load_pcx ( DIR_SPRITES "none.pcx", Pal);
 
          draw_sprite( virtscreen , Face1, 0 , 45 ) ;
 
          textout_centre ( virtscreen , font ,
          open1="No character found" ,160 , 70 , sel_player1 ) ;
 
-		 Icon1 = load_pcx ( "sprites\\selmiss.pcx", Pal);
+		 Icon1 = load_pcx ( DIR_SPRITES "selmiss.pcx", Pal);
 
 		 draw_sprite( virtscreen , Icon1, 145 , 1 ) ;
 
@@ -1675,13 +1675,13 @@ if (oldsel1 != sel1)
 	else
 
 	{
-		strcpy ( file, "sprites\\" );
+		strcpy ( file, DIR_SPRITES );
 		strcat ( file, charname[sel1] );
-		strcat ( file, "\\selbig.pcx" );
+		strcat ( file, DIR_BAR "selbig.pcx" );
 
-		strcpy ( passeur, "sprites\\" );
+		strcpy ( passeur, DIR_SPRITES );
 	    strcat ( passeur, charname[sel1] );
-	    strcat ( passeur, "\\char.ini" );
+	    strcat ( passeur, DIR_BAR "char.ini" );
 
 		override_config_file( passeur );
 
@@ -1803,9 +1803,9 @@ if (fy<1)
 	       if ( ( !gmode && ((key[p2_spunch]) || (key[p2_skick]) || (key[p2_wpunch]) || (key[p2_wkick]) ) )
 			   || ( gmode && ( P1_SP || P1_WP || P1_SK || P1_WK ) ) )
 	       {
-	            strcpy ( passeur, "sprites\\" );
+	            strcpy ( passeur, DIR_SPRITES );
                 strcat ( passeur, charname[sel2] );
-                strcat ( passeur, "\\static1.pcx" );
+                strcat ( passeur, DIR_BAR "static1.pcx" );
 
                 if ( ( load_pcx( passeur , Pal ) == NULL )
 					|| secretchar[sel2] ) Buzz() ;
@@ -1822,9 +1822,9 @@ if (fy<1)
 	 		fx = sel2-5 ;
 			while ( fx<0 ) fx = fx + nbchar ;
 
-			strcpy ( file, "sprites\\" );
+			strcpy ( file, DIR_SPRITES );
 			strcat ( file, charname[fx] );
-			strcat ( file, "\\selsmall.pcx" );
+			strcat ( file, DIR_BAR "selsmall.pcx" );
 
 			if ( (Icon2 = load_pcx ( file , Pal) ) == NULL )
 			Icon2 = load_pcx ( "sprites\\selmiss.pcx", Pal);
@@ -1857,9 +1857,9 @@ if (fy<1)
 			fx = sel2+5 ;
 			while ( fx>(nbchar-1) ) fx = fx - nbchar ;
 
-			strcpy ( file, "sprites\\" );
+			strcpy ( file, DIR_SPRITES );
 			strcat ( file, charname[fx] );
-			strcat ( file, "\\selsmall.pcx" );
+			strcat ( file, DIR_BAR "selsmall.pcx" );
 
 			if ( (Icon2 = load_pcx ( file , Pal) ) == NULL )
 			Icon2 = load_pcx ( "sprites\\selmiss.pcx", Pal);
@@ -1894,9 +1894,9 @@ if (fy<1)
 		   if ( P1_WK || P1_SK || P1_WP || P1_SP )
 
                {
-	                strcpy ( passeur, "sprites\\" );
+	                strcpy ( passeur, DIR_SPRITES );
                     strcat ( passeur, charname[sel1] );
-                    strcat ( passeur, "\\static1.pcx" );
+                    strcat ( passeur, DIR_BAR "static1.pcx" );
 
                     if ( ( load_pcx( passeur , Pal ) == NULL )
 						|| secretchar[sel1] ) Buzz() ;
@@ -1932,9 +1932,9 @@ if (fy<1)
 				fx = sel1-5 ;
 				while ( fx<0 ) fx = fx + nbchar ;
 
-				strcpy ( file, "sprites\\" );
+				strcpy ( file, DIR_SPRITES );
 				strcat ( file, charname[fx] );
-				strcat ( file, "\\selsmall.pcx" );
+				strcat ( file, DIR_BAR "selsmall.pcx" );
 
 				if ( (Icon1 = load_pcx ( file , Pal) ) == NULL )
 				Icon1 = load_pcx ( "sprites\\selmiss.pcx", Pal);
@@ -1967,9 +1967,9 @@ if (fy<1)
 				fx = sel1+5 ;
 				while ( fx>(nbchar-1) ) fx = fx - nbchar ;
 
-				strcpy ( file, "sprites\\" );
+				strcpy ( file, DIR_SPRITES );
 				strcat ( file, charname[fx] );
-				strcat ( file, "\\selsmall.pcx" );
+				strcat ( file, DIR_BAR "selsmall.pcx" );
 
 				if ( (Icon1 = load_pcx ( file , Pal) ) == NULL )
 				Icon1 = load_pcx ( "sprites\\selmiss.pcx", Pal);
@@ -2074,9 +2074,9 @@ if (story)
 			{
 				if (cx==1)
 				{
-					strcpy ( passeur, "sprites\\" );
+					strcpy ( passeur, DIR_SPRITES );
 					strcat ( passeur, charname[sel1] );
-					strcat ( passeur, "\\endimg.pcx" );
+					strcat ( passeur, DIR_BAR "endimg.pcx" );
 
 					if((Selecteur2 = load_pcx ( passeur , 0 ))!=NULL)
 					{
@@ -2107,23 +2107,23 @@ if (story)
 		if (!defeated[sel2] && !secretchar[sel2] & present[sel2]) cy = 0 ;
 	}
 
-	strcpy ( file, "sprites\\" );
+	strcpy ( file, DIR_SPRITES );
 	strcat ( file, charname[sel2] );
-	strcat ( file, "\\selbig.pcx" );
+	strcat ( file, DIR_BAR "selbig.pcx" );
 
 	strcpy ( sectn, charname[sel2] );
 
-	strcpy ( passeur, "sprites\\" );
+	strcpy ( passeur, DIR_SPRITES );
 	strcat ( passeur, sectn );
-	strcat ( passeur, "\\char.ini" );
+	strcat ( passeur, DIR_BAR "char.ini" );
 
 	override_config_file( passeur );
 
 	Face2 = load_pcx( file , Pal ) ;
 
-	strcpy ( passeur, "sprites\\" );
+	strcpy ( passeur, DIR_SPRITES );
 	strcat ( passeur, charname[sel1] );
-	strcat ( passeur, "\\selbig.pcx" );
+	strcat ( passeur, DIR_BAR "selbig.pcx" );
 
     Face1 = load_pcx ( passeur , Pal);
 
@@ -2381,9 +2381,9 @@ allegro_message("check bkgd path :\n %s", passeur );
 
    strcpy ( sectn, charname[sel2] );
 
-   strcpy ( passeur, "sprites\\" );
+   strcpy ( passeur, DIR_SPRITES );
    strcat ( passeur, sectn );
-   strcat ( passeur, "\\char.ini" );
+   strcat ( passeur, DIR_BAR "char.ini" );
 
 if (debug)
 allegro_message("check char1 path :\n %s", passeur );
@@ -2858,9 +2858,9 @@ allegro_message("sprites 2 loaded" );
 
    strcpy ( sectn, charname[sel1] );
 
-   strcpy ( passeur, "sprites\\" );
+   strcpy ( passeur, DIR_SPRITES );
    strcat ( passeur, sectn );
-   strcat ( passeur, "\\char.ini" );
+   strcat ( passeur, DIR_BAR "char.ini" );
 
 if (debug)
 allegro_message("check char2 path :\n %s", passeur );
@@ -9820,9 +9820,9 @@ void load_sprites1 (void)
 int i ;
 char x = 1 ;
 
-   strcpy ( passeur, "sprites\\" );
+   strcpy ( passeur, DIR_SPRITES );
    strcat ( passeur, charname[sel1] );
-   strcat ( passeur, "\\" );
+   strcat ( passeur, DIR_BAR "" );
 
    for ( num=1 ; num<(p1.statik.nbf+1) ; ++num )
 
@@ -12024,9 +12024,9 @@ int scan_files(char *name, int attrib, char what )
       if (*allegro_errno != 0)
 	 break;
    } while (al_findnext(dta, dta_name, &dta_attrib) == 0);
-   */
 
    al_findclose(dta);
+   */
 
     DIR *d;
     struct dirent *dir;
