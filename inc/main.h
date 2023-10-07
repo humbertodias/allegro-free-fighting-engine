@@ -174,7 +174,9 @@ int ok = 1;                         // Loop until ok==0
 int s = 2;                          // Scroll speed 2 pixels per frame
 int misc;
 long t1, t2;
-long n;				// For calculating FPS
+
+
+
 int flag = 0;                     // sprite cycling flags
 int flag2 = 0;
 char hflag = 0, hflag2 = 0;

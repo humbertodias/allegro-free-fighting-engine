@@ -355,7 +355,11 @@ extern int ok ;                         // Loop until ok==0
 extern int s ;                          // Scroll speed (2 pixels per frame)
 extern int misc ;
 extern long t1, t2;
-extern long n;								// For calculating FPS
+//extern long n;								// For calculating FPS
+// FPS
+static const int updates_per_second = 100;
+extern volatile long n;
+void increment_frame_count();
 
 extern int flag ;                     // sprite cycling flags
 extern int flag2 ;
@@ -499,5 +503,4 @@ extern char log_mess[ 80 ];
 extern void __error__( char *log_mess, char *n_file , int n_line );
 
 #endif
-
 // EOF

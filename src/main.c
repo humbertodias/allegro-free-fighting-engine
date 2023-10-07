@@ -50,6 +50,12 @@ BITMAP *B_prfct;
 char bkgdname [ 200 ][ 30 ] ;
 char flcname [ 100 ][ 30 ] ;
 
+// FPS
+volatile long n = 0;
+void increment_frame_count() {
+    n++;
+}
+
 int main(int, char **)
 {
 	int loop = 0;
@@ -67,7 +73,7 @@ int main(int, char **)
 #endif
 
 	mp3 = get_config_int( 0, "mp3", 1 );
-	gfx_flag = get_config_int( 0, "gfmode", 0 );
+	gfx_flag = get_config_int( 0, "gfmode", 4 );
 	wind_flag = get_config_int( 0, "win", 0 );
 	switch ( gfx_flag )
 	{
@@ -136,6 +142,11 @@ int main(int, char **)
 	/*************************************/
 
 	install_timer(); //habilita rotinas para timer
+    LOCK_VARIABLE(n);
+    LOCK_FUNCTION(increment_frame_count);
+    install_int_ex(increment_frame_count, BPS_TO_TIMER(updates_per_second));
+
+
 	install_keyboard(); //habilita as rotinas de teclado
 	fonts_dat = load_datafile ( "fonts.dat" );
 	if ( get_config_int( 0, "joy1", 0 ) )
@@ -419,18 +430,15 @@ int main(int, char **)
 		TRON( " /* inits() */ " );
 		inits();
 
-		while ( 1 )
-		{
-			/* StartMenu*/
-			TRON( "startmenu()" );
-			loop = startmenu();
-			if ( loop )
-				break;
-			/* K_batle() */
-			TRON( "K_batle()" );
-			if ( !K_batle() )
-				break;
-		}
+        /* StartMenu*/
+        TRON("startmenu()");
+        loop = startmenu();
+        if (loop)
+            break;
+        /* K_batle() */
+        TRON("K_batle()");
+        if (!K_batle())
+            break;
 
 		if ( loop )
 			continue;
@@ -438,6 +446,7 @@ int main(int, char **)
 		/******** SMALL ENDING STUFF *****************/
 		fade_out( 2 );
 		TRON( "destroy_bitmap()" );
+        if (zoomscreen)
 		destroy_bitmap ( zoomscreen );
 		TRON( "OK." );
 		if ( animated )

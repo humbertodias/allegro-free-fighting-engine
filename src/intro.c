@@ -95,7 +95,6 @@ void intro( void )
 }
 /****************************************************************/
 
-
 /****************************************************************/
 void introround( int round )
 {
@@ -105,115 +104,106 @@ void introround( int round )
 #endif
 	TRON( log_mess );
 
-	while ( deb )
-	{
-		deb++;
-		if ( deb == 2 )
-		{
-			load_kick1();
-			load_kick2();
-			retrace_count = 0;
-		}
+    while (deb) {
+        deb++;
+        if (deb == 2) {
+            load_kick1();
+            load_kick2();
+            retrace_count = 0;
+        }
 
-		if ( deb == 50 )
-			Round( round );
+        if (deb == 50)
+            Round(round);
 
-		if ( deb == 240 )
-			Fight();
-		/*
-		 * Update the real screen 
-		 */ 
-		// vsync() ;
+        if (deb == 240)
+            Fight();
+        /*
+         * Update the real screen
+         */
+        // vsync() ;
 
-		if ( animated )
-			bkgd_counter++;
+        if (animated)
+            bkgd_counter++;
 
-		retrace_count--;
+        retrace_count--;
 
-		if ( retrace_count > 0 )
-			;
-		else
-		{
-                        refresh_timer();
-			displays();
-			blit_KOF91();
-			blit_Bkgd();
+        if (retrace_count > 0);
+        else {
+            refresh_timer();
+            displays();
+            blit_KOF91();
+            blit_Bkgd();
 
-			GStatic2( ( int ) ( flag2 / p2.statik.spd ), spr2x, spr2y );
-			GStatic( ( int ) ( flag / p1.statik.spd ), spr1x, spr1y );
-			if ( foreground )
-				masked_blit( Frgd, zoomscreen,
-							 0, 0, 0, 0, ( bkgdlim + 320 ),
-							 ( 200 + zoomsup ) );
-			blit( zoomscreen, virtscreen, cx, zoomsup, 0, 0, 320, 200 );
-			/*		while (!retrace_count);; */
-		}
+            GStatic2((int) (flag2 / p2.statik.spd), spr2x, spr2y);
+            GStatic((int) (flag / p1.statik.spd), spr1x, spr1y);
+            if (foreground)
+                masked_blit(Frgd, zoomscreen,
+                            0, 0, 0, 0, (bkgdlim + 320),
+                            (200 + zoomsup));
+            blit(zoomscreen, virtscreen, cx, zoomsup, 0, 0, 320, 200);
+            /*		while (!retrace_count);; */
+        }
 
-		flag++;
-		flag2++;
-		if ( flag > ( ( p1.statik.spd * p1.statik.nbf ) - 1 ) )
-			flag = 0;
-		if ( flag2 > ( ( p2.statik.spd * p2.statik.nbf ) - 1 ) )
-			flag2 = 0;
-		if ( ( deb > 50 ) && ( deb < 150 ) )
-		{
-			if ( deb < 76 )
-				angle = ( deb - 50 ) * ( Carton_R1->w / 25 );
-			else if ( deb > 124 )
-				angle = ( 25 - ( deb - 125 ) ) * ( Carton_R1->w / 25 );
-			else
-				angle = Carton_R1->w;
-			switch ( round )
-			{
-					case 1:
-					stretch_sprite( virtscreen, Carton_R1,
-									( 320 - angle ) / 2,
-									( 200 - Carton_R1->h ) / 2, angle,
-									Carton_R1->h );
-					break;
-					case 2:
-					stretch_sprite( virtscreen, Carton_R2,
-									( 320 - angle ) / 2,
-									( 200 - Carton_R2->h ) / 2, angle,
-									Carton_R2->h );
-					break;
-					case 3:
-					stretch_sprite( virtscreen, Carton_R3,
-									( 320 - angle ) / 2,
-									( 200 - Carton_R3->h ) / 2, angle,
-									Carton_R3->h );
-					break;
-					default:
-					stretch_sprite( virtscreen, Carton_R1,
-									( 320 - angle ) / 2,
-									( 200 - Carton_R1->h ) / 2, angle,
-									Carton_R1->h );
-					break;
-			}
-		}
-		else if ( ( deb > 240 ) && ( deb < 320 ) )
-		{
-			masked_blit( Carton_FT, virtscreen, 0, 0,
-						 ( 320 - Carton_FT->w ) / 2,
-						 ( 200 - Carton_FT->h ) / 2, Carton_FT->w,
-						 Carton_FT->h );
-		}
-		else if ( deb > 320 )
-		{
-			if ( !nbpar )
-			{
-				/*
-				 * Frame count starts at 0 
-				 */
-				n = 0;
-				clear_keybuf();
-				poll_joystick();
-			}
+        flag++;
+        flag2++;
+        if (flag > ((p1.statik.spd * p1.statik.nbf) - 1))
+            flag = 0;
+        if (flag2 > ((p2.statik.spd * p2.statik.nbf) - 1))
+            flag2 = 0;
+        if ((deb > 50) && (deb < 150)) {
+            if (deb < 76)
+                angle = (deb - 50) * (Carton_R1->w / 25);
+            else if (deb > 124)
+                angle = (25 - (deb - 125)) * (Carton_R1->w / 25);
+            else
+                angle = Carton_R1->w;
+            switch (round) {
+                case 1:
+                    stretch_sprite(virtscreen, Carton_R1,
+                                   (320 - angle) / 2,
+                                   (200 - Carton_R1->h) / 2, angle,
+                                   Carton_R1->h);
+                    break;
+                case 2:
+                    stretch_sprite(virtscreen, Carton_R2,
+                                   (320 - angle) / 2,
+                                   (200 - Carton_R2->h) / 2, angle,
+                                   Carton_R2->h);
+                    break;
+                case 3:
+                    stretch_sprite(virtscreen, Carton_R3,
+                                   (320 - angle) / 2,
+                                   (200 - Carton_R3->h) / 2, angle,
+                                   Carton_R3->h);
+                    break;
+                default:
+                    stretch_sprite(virtscreen, Carton_R1,
+                                   (320 - angle) / 2,
+                                   (200 - Carton_R1->h) / 2, angle,
+                                   Carton_R1->h);
+                    break;
+            }
+        } else if ((deb > 240) && (deb < 320)) {
+            masked_blit(Carton_FT, virtscreen, 0, 0,
+                        (320 - Carton_FT->w) / 2,
+                        (200 - Carton_FT->h) / 2, Carton_FT->w,
+                        Carton_FT->h);
+        } else if (deb > 320) {
+            if (!nbpar) {
+                /*
+                 * Frame count starts at 0
+                 */
+                n = 0;
+                clear_keybuf();
+                poll_joystick();
+            }
 
-			deb = 0;
-			retrace_count = 0;
-		}
-	} /* while (deb) */
+            deb = 0;
+            retrace_count = 0;
+        }
+    } /* while (deb) */
+
+
 #if GAME_DEBUG > 0
 	sprintf( log_mess, "ROUND: %d - OK", round );
 #endif
