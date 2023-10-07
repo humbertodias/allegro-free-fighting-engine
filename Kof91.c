@@ -11974,6 +11974,13 @@ return rtnv ;
 }
 
 
+int ends_with(const char *s, const char *suff) {
+    size_t slen = strlen(s);
+    size_t sufflen = strlen(suff);
+
+    return slen >= sufflen && !memcmp(s + slen - sufflen, suff, sufflen);
+}
+
 int scan_files(char *name, int attrib, char what, char *ext )
 {
    char dta_name[512], buf[512], dta_ext[30];
@@ -11997,14 +12004,8 @@ int scan_files(char *name, int attrib, char what, char *ext )
     {
         while ((dir = readdir(d)) != NULL)
         {
-           // if (dir->d_type == DT_DIR) continue;
-            printf("%s\n", dir->d_name);
-            sprintf(dta_name, "%s", dir->d_name);
+            replace_filename(buf, name, dir->d_name, sizeof(buf));
 
-            replace_filename(buf, name, dta_name, sizeof(buf));
-
-            len = ustrlen(buf);
-            if (len > 3) ustrncpy( dta_ext, buf + (len-3), 30 );
             //get the filename buffer here !!!!
             if (what==0)
             {
@@ -12016,14 +12017,14 @@ int scan_files(char *name, int attrib, char what, char *ext )
             }
 
             else
-            if (what==1 )
+            if (what==1 && ends_with(buf, ext) )
             {
                 ustrncpy( bkgdname[c], buf+11, 30 );
                 c++ ;
             }
 
             else
-            if (what==2 )
+            if (what==2 && ends_with(buf, ext))
             {
                 ustrncpy( flcname[c], buf+11, 30 );
                 c++ ;
