@@ -657,7 +657,7 @@ int startmenu (void)
 
 		  poll_joystick ();
           // TODO
-          bool enter = key[KEY_ENTER];
+          char enter = key[KEY_ENTER];
 		  if (P1_WK || P1_SK || P1_WP || P1_SP || enter)
 		    {
 
