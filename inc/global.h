@@ -356,7 +356,7 @@ extern int fx, fy;
 extern int ok ;                         // Loop until ok==0
 extern int s ;                          // Scroll speed (2 pixels per frame)
 extern int misc ;
-//long t1, t2,
+extern long t1, t2;
 extern long n;								// For calculating FPS
 
 extern int flag ;                     // sprite cycling flags

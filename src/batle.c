@@ -4884,7 +4884,7 @@ int K_batle (void){
 	      // aqui carrega pegamos a imagem de fundo
 	      // e carregamos e mostramos :)  
 
-	      sprintf (file2, "sprites" DIR_BAR "npattern.pcx");
+	      sprintf (file2, DIR_SPRITES "npattern.pcx");
 	      tface1 = xload_pcx (file2, Pal);
 
 	      draw_sprite (virtscreen, tface1, 0, 0);
@@ -4898,7 +4898,7 @@ int K_batle (void){
 
 	      // Claudemir, vou escrever um texto na tela  :)
 
-	      sprintf (passeur, "sprites" DIR_BAR "%s" DIR_BAR "char.ini",
+	      sprintf (passeur, DIR_SPRITES "%s" DIR_BAR "char.ini",
 		       charname[sel1]);
 
 	      text_centre_shadow (virtscreen, font,
@@ -4955,10 +4955,10 @@ int K_batle (void){
 	      //rest( 500 );
 
 
-	      /*              if (gmode) Carton_WN = load_bitmap("sprites" DIR_BAR "lose.pcx", 0);
+	      /*              if (gmode) Carton_WN = load_bitmap(DIR_SPRITES "lose.pcx", 0);
 	       */
 	      if (gmode)
-		Carton_WN = xload_pcx ("sprites" DIR_BAR "lose.pcx", 0);
+		Carton_WN = xload_pcx (DIR_SPRITES "lose.pcx", 0);
 
 	      rectfill (virtscreen, 0, 0, 320, 200, 0);
 	      draw_sprite (virtscreen, Carton_WN,
@@ -4979,7 +4979,7 @@ int K_batle (void){
 				   (320 - Face1->w) / 2, 30 + Carton_WN->h);
 		    }
 		}
-	      sprintf (passeur, "sprites" DIR_BAR "%s"
+	      sprintf (passeur, DIR_SPRITES "%s"
 		       DIR_BAR "char.ini", charname[sel2]);
 
 	      text_centre_shadow (virtscreen, font,
@@ -5096,7 +5096,7 @@ void K_pause_game (void)
       y = 1;
       pause_sprite = create_bitmap (200, 60);
       rectfill (pause_sprite, 0, 0, 200, 60, makecol (0, 50, 0));
-      pause_bord = xload_pcx ("sprites" DIR_BAR "monitor.pcx", Pal);
+      pause_bord = xload_pcx (DIR_SPRITES "monitor.pcx", Pal);
 
       saved_screen = create_bitmap (320, 200);
       pause_screen = create_bitmap (320, 200);

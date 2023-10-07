@@ -76,8 +76,7 @@ BITMAP *Carton_FT;
 BITMAP *Carton_WN;
 BITMAP *Carton_KO;
 #if TIMEOVER == 1
-// TODO - MINE
-//BITMAP *Carton_TO;
+BITMAP *Carton_TO;
 #endif
 BITMAP *novic0;
 BITMAP *novic1;
@@ -92,12 +91,10 @@ BITMAP *Bkgd;
 BITMAP *Frgd;
 /* BITMAP *Blood; */
 #if TIMEOVER > 0
-// TODO - MINE
-//BITMAP *B_clock[ 11 ];
+BITMAP *B_clock[ 11 ];
 #endif
 #if PERFECT == 1
-// TODO - MINE
-//BITMAP *B_prfct;
+BITMAP *B_prfct;
 #endif 
 /******************************************/
 char animated;
@@ -187,7 +184,7 @@ int fx, fy;
 int ok = 1;                         // Loop until ok==0
 int s = 2;                          // Scroll speed 2 pixels per frame
 int misc;
-//long t1, t2,
+long t1, t2;
 long n;				// For calculating FPS
 int flag = 0;                     // sprite cycling flags
 int flag2 = 0;

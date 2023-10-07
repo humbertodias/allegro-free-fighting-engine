@@ -42,11 +42,10 @@
 
 int main(int, char **)
 {
-	
 	int loop = 0;
 	story = 0;
 	lineprint = 0 ;
-	//   srand(time(NULL));
+	srand(time(NULL));
 	TRONSTART( "\n  **WARNING: Initializing KOF2003..." );
 	allegro_init(); // inicia a lib Allegro
 	/*   set_window_title ("initialising engine ..."); */
@@ -409,7 +408,7 @@ int main(int, char **)
 	{
 		TRON( " /* inits() */ " );
 		inits();
-		
+
 		while ( 1 )
 		{
 			/* StartMenu*/

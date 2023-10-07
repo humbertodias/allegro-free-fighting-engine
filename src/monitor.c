@@ -50,21 +50,21 @@
  patch: ric@asbyte.com.br
 **************************************************************************/
 
-static BITMAP *monit_screen;
-static BITMAP *saved_screen;
-static BITMAP *monit_sprite;
-static BITMAP *monit_bord;
-static BITMAP *text_screen;
+BITMAP *monit_screen;
+BITMAP *saved_screen;
+BITMAP *monit_sprite;
+BITMAP *monit_bord;
+BITMAP *text_screen;
 
-static char line_text[ 80 ];
-static char char_text;
-static int pos_text;
-static char monitor[ 80 ][ 80 ] ; // 15 lines x 80 coluns = 1200 bytes
+char line_text[ 80 ];
+char char_text;
+int pos_text;
+char monitor[ 80 ][ 80 ] ; // 15 lines x 80 coluns = 1200 bytes
 
 /***************************************************/
 void console_monitor( void )
 {
-	static int i, screen_w, screen_h;
+	int i, screen_w, screen_h;
 
 	TRON("console_monitor()");
 	screen_w = screen->w;
@@ -76,7 +76,7 @@ void console_monitor( void )
 	text_screen = create_bitmap( 320, 200 );
 
 	rectfill( monit_sprite, 0, 0, 320, 100, makecol( 0, 50, 0 ) );
-	sprintf( file, "sprites" DIR_BAR "monitor.pcx" );
+	sprintf( file, DIR_SPRITES "monitor.pcx" );
 //#if GAME_DEBUG >= 2
 //	monit_bord = xload_pcx( file, Pal );
 //#endif
@@ -200,7 +200,7 @@ int i;
 /**********************************************************/
 void console_print( char *text )
 {
-	static int i;
+	int i;
 	
 	for ( i = 1;i <= 10;i++ ) 
 	     sprintf( monitor[ i - 1 ], "%s", monitor[ i ] );
@@ -211,8 +211,8 @@ void console_print( char *text )
 /*****************************************/
 void exec_console( char *text )
 {
-	static char scommand[4][40] ; // Typed commands 
-	static int i, ind_param, ind_word;
+	char scommand[4][40] ; // Typed commands
+	int i, ind_param, ind_word;
 	
 #if GAME_DEBUG > 0
 	// Write in log file typed commands
@@ -387,13 +387,13 @@ void exec_console( char *text )
 /* ---------------------------- */
 void run_script(int modo, int round, char *dir_p1, char *dir_p2)
 {
-   static char namefile[30];
-   static char text[80]; 
-   static char ch=' ';
-   static int i=0;
-   static int player;
-   static char dir_px[100];
-   static FILE *scriptfile;
+   char namefile[30];
+   char text[80];
+   char ch=' ';
+   int i=0;
+   int player;
+   char dir_px[100];
+   FILE *scriptfile;
  
    
  for(player=2;player>=1;player--)
@@ -405,23 +405,23 @@ void run_script(int modo, int round, char *dir_p1, char *dir_p2)
          sprintf(dir_px,"%s",dir_p2);
       }
 
-      /*************************************/      
+      /*************************************/
       if ( modo==0 )
       {
-        sprintf(namefile, "sprites" DIR_BAR "%s" DIR_BAR "round%d.kof", 
+        sprintf(namefile, "sprites" DIR_BAR "%s" DIR_BAR "round%d.kof",
                 dir_px, round );
       }
-      
+
       if( modo==1 )
       {
-        sprintf(namefile, "sprites" DIR_BAR "%s" DIR_BAR "win%d.kof", 
-                dir_px, round );	      
+        sprintf(namefile, "sprites" DIR_BAR "%s" DIR_BAR "win%d.kof",
+                dir_px, round );
       }
-      
+
       if( modo==2 )
       {
-        sprintf(namefile, "sprites" DIR_BAR "%s" DIR_BAR "lose%d.kof", 
-                dir_px, round );	      
+        sprintf(namefile, "sprites" DIR_BAR "%s" DIR_BAR "lose%d.kof",
+                dir_px, round );
       }
       /*******************************/
       sprintf( log_mess, "OPEN:%s", namefile );

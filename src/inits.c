@@ -186,10 +186,7 @@ int inits( void )
 			/* Return to text mode */
 			allegro_exit() ;
 			/* Display some stats if available */
-			/*                  if ( nbpar > 0 )
-			 
-			                  allegro_message( "----> %ld FPS\n\n", n / (t2 - t1 ) );
-			*/
+              if ( nbpar > 0 ) allegro_message( "----> %ld FPS\n\n", n / (t2 - t1 ) );
 			TRON( "ESC pressioned..." );
 			exit( 0 ) ;
 		}

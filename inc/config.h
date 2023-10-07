@@ -93,7 +93,8 @@
   1 - enable
   * activate of features in development *
 */
-#define TEMP 0 
+#define TEMP 1
+
 
 
 #define DEF_MAX_MONITOR_VARS 150

@@ -643,15 +643,15 @@ void refresh_powerbar( void )
 }
 
 /*************************************************************/
+
 #if TIMEOVER > 0
 void refresh_timer( void )
 {
-     timer_border = xget_config_int("display","timer_border",1);
-	 timer_border_x = xget_config_int("display","timer_border_x",147);
-	 timer_border_y = xget_config_int("display","timer_border_y",22);
+//     timer_border = xget_config_int("display","timer_border",1);
+//	 timer_border_x = xget_config_int("display","timer_border_x",147);
+//	 timer_border_y = xget_config_int("display","timer_border_y",22);
 
-
-#if GAME_DEBUG >= 2	
+#if GAME_DEBUG >= 2
 	TRON( "CHECK CLOCK" );
 #endif	
 	if ( clock_frame++ >= t_decrement )
