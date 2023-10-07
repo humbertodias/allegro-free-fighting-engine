@@ -57,7 +57,7 @@
     1 = allow change...
  */
 
-#define CHEAT 1
+#define CHEAT 0
 
 /*
   TIMEOVER

@@ -37,7 +37,8 @@
  patch: ric@asbyte.com.br
 **************************************************************************/
 
-
+struct PLAYER_BMP_STRUCT Player1;
+struct PLAYER_BMP_STRUCT Player2;
 
 char c_midi_ok=0;
 /*************************************************************************

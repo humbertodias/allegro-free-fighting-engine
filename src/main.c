@@ -40,6 +40,16 @@
 #include "global.h"
 #include "main.h"
 
+#if TIMEOVER > 0
+BITMAP *B_clock[ 11 ];
+#endif
+#if PERFECT == 1
+BITMAP *B_prfct;
+#endif
+
+char bkgdname [ 200 ][ 30 ] ;
+char flcname [ 100 ][ 30 ] ;
+
 int main(int, char **)
 {
 	int loop = 0;

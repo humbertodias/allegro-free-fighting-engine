@@ -31,8 +31,10 @@
 #include "refresh.h"
 #include "options.h"
 #include "wavsounds.h"
-#include  "sprites.h"
+#include "sprites.h"
 #include "inits.h"
+
+char sret[255 * 2];
 
 int inits( void )
 {

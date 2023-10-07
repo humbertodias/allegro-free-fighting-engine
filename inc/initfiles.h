@@ -27,7 +27,7 @@
 #ifndef _INIFILES_H
 #define _INIFILES_H
 
-char sret[255 * 2];
+extern char sret[];
 
 int listfiles(char xret[1000][30], const char *directory, const char *sufixname);
 

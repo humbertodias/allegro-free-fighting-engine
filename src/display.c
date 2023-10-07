@@ -151,7 +151,7 @@ int timer_c_y;
 
 int timer_center;
 
-int t_clock;
+int t_clock = 0;
 int t_clock_ini;
 int t_short;
 int t_decrement;
@@ -211,8 +211,7 @@ void displays( void )
 /*****************************************/
 void initdisplay( void )
 {
-	int up_h, down_h;
-	char temp[ 4 ];
+	char temp[ 6 ];
         TRON("ak1");
 	override_config_file( "game.ini" );
 	set_config_file( "game.ini" );
@@ -225,7 +224,7 @@ void initdisplay( void )
 	
 #if TIMEOVER > 0
 //        disp_put_var("t_clock",&t_clock); // put t_clock variable in monitor system
-	
+
 	slowdown = xget_config_int( "adjust","slowdown",1);
         disp_put_var("slowdown",&slowdown);
         TRON("ak4");
@@ -235,15 +234,15 @@ void initdisplay( void )
 
 	t_clock_ini = xget_config_int( "timer", "t_clock", 0 );
 	disp_put_var("t_clock_ini",&t_clock_ini);
-	 
+
 	t_decrement = xget_config_int( "timer", "t_decrement", 0 );
         disp_put_var("t_decrement",&t_decrement);
-	
+
 	t_short = xget_config_int( "timer", "t_short", 0 );
 	disp_put_var("t_short",&t_short);
 
 	sprintf( s_cron, "%d", t_clock_ini );
-#endif 
+#endif
 	/*--------------------------------------------------------------*/
 	sprintf( temp, "%s",
 			 xget_config_string( "display", "up", "on" ) );
@@ -252,9 +251,9 @@ void initdisplay( void )
 		display_up = 1;
 	else
 		display_up = 0;
-	
-	disp_put_var("up",&display_up); 
-	
+
+	disp_put_var("up",&display_up);
+
 	/*--------------------------------------------------------------*/
 	sprintf( temp , "%s",
 			 xget_config_string( "display", "down", "on" ) );
@@ -274,10 +273,10 @@ void initdisplay( void )
 
 	up_x = xget_config_int( "display", "up_x", 0 );
         disp_put_var("up_x",&up_x);
-		
+
 	down_x = xget_config_int( "display", "down_x", 175 );
         disp_put_var("down_x",&down_x);
-		
+
 	/* name parameters
 	   p?1_name:
 	   0 - none
@@ -287,19 +286,19 @@ void initdisplay( void )
 
 	p1_name = xget_config_int( "display", "p1_name", 1 );
 	disp_put_var("p1_name",&p1_name);
-	
+
 	p2_name = xget_config_int( "display", "p2_name", 1 );
 	disp_put_var("p2_name",&p2_name);
 
 	p1_name_x = xget_config_int( "display", "p1_name_x", 50 );
         disp_put_var("p1_name_x",&p1_name_x);
-	
+
 	p1_name_y = xget_config_int( "display", "p1_name_y", 1 );
 	disp_put_var("p1_name_y",&p1_name_y);
-		
+
 	p2_name_x = xget_config_int( "display", "p2_name_x", 195 );
 	disp_put_var("p2_name_x",&p2_name_x);
-	
+
 	p2_name_y = xget_config_int( "display", "p2_name_y", 1 );
 	disp_put_var("p2_name_y",&p2_name_y);
 
@@ -317,14 +316,14 @@ void initdisplay( void )
 
 	p1_lifebar_border_x = xget_config_int( "display", "p1_lifebar_border_x", 0 );
 	disp_put_var("p1_lifebar_border_x",&p1_lifebar_border_x);
-	
+
 	p2_lifebar_border_x = xget_config_int( "display", "p2_lifebar_border_x", 0 );
 	disp_put_var("p2_lifebar_border_x",&p2_lifebar_border_x);
 
 	p1_lifebar_border_y = xget_config_int( "display", "p1_lifebar_border_y", 0 );
-	  
+
 	disp_put_var("p1_lifebar_border_y",&p1_lifebar_border_y);
-	
+
 	p2_lifebar_border_y = xget_config_int( "display", "p2_lifebar_border_y", 0 );
 	disp_put_var("p2_lifebar_border_y",&p2_lifebar_border_y);
 
@@ -339,35 +338,35 @@ void initdisplay( void )
 	disp_put_var("p1_lifebar",&p1_lifebar);
 	p2_lifebar = xget_config_int( "display", "p2_lifebar", 1 );
         disp_put_var("p2_lifebar",&p2_lifebar);
-	
+
 	/*20 + ( 125 - ( life1/4 ) ) = 20 */
 	p1_lifebar_x = xget_config_int( "display", "p1_lifebar_x", 20 );
 	disp_put_var("p1_lifebar_x",&p1_lifebar_x);
 	p1_lifebar_y = xget_config_int( "display", "p1_lifebar_y", 12 );
         disp_put_var("p1_lifebar_y",&p1_lifebar_y);
-	
+
 	p2_lifebar_x = xget_config_int( "display", "p2_lifebar_x", 175 );
 	disp_put_var("p2_lifebar_x",&p1_lifebar_x);
-	
+
 	p2_lifebar_y = xget_config_int( "display", "p2_lifebar_y", 12 );
         disp_put_var("p2_lifebar_y",&p2_lifebar_y);
 
 	/* BORDER OF POWERBAR */
 	p1_powerbar_border = xget_config_int( "display", "p1_powerbar_border", 2 );
 	disp_put_var("p1_powerbar_border",&p1_powerbar_border);
-	
+
 	p2_powerbar_border = xget_config_int( "display", "p2_powerbar_border", 2 );
 	disp_put_var("p2_powerbar_border",&p2_powerbar_border);
 
 	p1_powerbar_border_y = xget_config_int( "display", "p1_powerbar_border_y", 0 );
 	disp_put_var("p1_powerbar_border_y",&p1_powerbar_border_y);
-	
+
 	p1_powerbar_border_x = xget_config_int( "display", "p1_powerbar_border_x", 0 );
 	disp_put_var("p1_powerbar_border_x",&p1_powerbar_border_x);
 
 	p2_powerbar_border_y = xget_config_int( "display", "p2_powerbar_border_y", 0 );
 	disp_put_var("p2_powerbar_border_y",&p2_powerbar_border_y);
-	
+
 	p2_powerbar_border_x = xget_config_int( "display", "p2_powerbar_border_x", 253 );
 	disp_put_var("p2_powerbar_border_x",&p2_powerbar_border_x);
 
@@ -378,7 +377,7 @@ void initdisplay( void )
         disp_put_var("p1_life_face_x",&p1_life_face_x);
 	p1_life_face_y=xget_config_int( "display", "p1_life_face_y", 24 );
         disp_put_var("p1_life_face_y",&p1_life_face_y);
-       
+
         p2_life_face=xget_config_int( "display", "p2_life_face", 1 );
         disp_put_var("p2_life_face",&p2_life_face);
         p2_life_face_x=xget_config_int( "display", "p2_life_face_x", 295 );
@@ -400,7 +399,7 @@ void initdisplay( void )
         disp_put_var("p2_life_face_border_x",&p2_life_face_border_x);
         p2_life_face_border_y=xget_config_int( "display", "p2_life_face_border_y", 25);
         disp_put_var("p2_life_face_border_y",&p2_life_face_border_y);
-                                                                                
+
 	/*VICTORY FLAGS*/
 
 	p1_victory_flag=xget_config_int( "display", "p1_victory_flag", 1 );
@@ -410,33 +409,33 @@ void initdisplay( void )
 	p1_victory_flag_y=xget_config_int( "display", "p1_victory_flag_y", 34 );
 	disp_put_var("p1_victory_flag_y",&p1_victory_flag_y);
 
-	
+
 	p2_victory_flag=xget_config_int( "display", "p2_victory_flag", 1 );
 	disp_put_var("p2_victory_flag",&p2_victory_flag);
 	p2_victory_flag_x=xget_config_int( "display", "p2_victory_flag_x", 279);
 	disp_put_var("p2_victory_flag_x",&p2_victory_flag_x);
 	p2_victory_flag_y=xget_config_int( "display", "p2_victory_flag_y", 34 );
 	disp_put_var("p2_victory_flag_y",&p2_victory_flag_y);
-	
+
 	/* POWERBAR */
 	p1_powerbar = xget_config_int( "display", "p1_powerbar", 2 );
 	disp_put_var("p1_powerbar",&p1_powerbar);
-	
+
 	p2_powerbar = xget_config_int( "display", "p2_powerbar", 2 );
 	disp_put_var("p2_powerbar",&p2_powerbar);
-	
+
 	p1_powerbar_x = xget_config_int( "display", "p1_powerbar_x", 3 );
 	disp_put_var("p1_powerbar_x",&p1_powerbar_x);
-	
+
 	p1_powerbar_y = xget_config_int( "display", "p1_powerbar_y", 18 );
 	disp_put_var("p1_powerbar_y",&p1_powerbar_y);
 
 	p2_powerbar_x = xget_config_int( "display", "p2_powerbar_x", 256 );
 	disp_put_var("p2_powerbar_x",&p2_powerbar_x);
-	
+
 	p2_powerbar_y = xget_config_int( "display", "p2_powerbar_y", 18 );
         disp_put_var("p2_powerbar_y",&p2_powerbar_y);
-      
+
 
 #if TIMEOVER > 0
 	/* BORDER OF TIMER*/
@@ -445,26 +444,26 @@ void initdisplay( void )
 
 	timer_border_x = xget_config_int( "display", "timer_border_x", 147 );
         disp_put_var( "timer_border_x",&timer_border_x );
-	
+
 	timer_border_y = xget_config_int( "display", "timer_border_y", 22 );
 	disp_put_var( "timer_border_y",&timer_border_y );
 
 	/* TIMER */
 	timer_r = xget_config_int( "display", "timer_r", 1 );
         disp_put_var( "timer_r",&timer_r );
-	
+
 	timer_l = xget_config_int( "display", "timer_l", 1 );
 	disp_put_var( "timer_l",&timer_l );
 
 	timer_r_x = xget_config_int( "display", "timer_r_x", 162 );
         disp_put_var( "timer_r_x",&timer_r_x );
-	
+
 	timer_r_y = xget_config_int( "display", "timer_r_y", 22 );
 	disp_put_var( "timer_r_y",&timer_r_y);
 
 	timer_l_x = xget_config_int( "display", "timer_l_x", 147 );
         disp_put_var( "timer_l_x",&timer_l_x);
-	
+
 	timer_l_y = xget_config_int( "display", "timer_l_y", 22 );
         disp_put_var( "timer_l_y",&timer_l_y);
 
@@ -496,7 +495,7 @@ void initdisplay( void )
 	      text_shadow( ( p1_name == 1 ? disp_up : disp_down ),
                      small_font, charn1, p1_name_x, p1_name_y,
 					 sel_player1 );
- 
+
               #if GAME_DEBUG > 0
                  rect(p1_name == 1 ? disp_up : disp_down,p1_name_x,
                      p1_name_y,p1_name_x+8,p1_name_y+8,
@@ -524,7 +523,7 @@ void initdisplay( void )
 
 	displays();
         TRON("1");
-#if CHEAT == 1	
+#if CHEAT == 1
 	disp_put_var( "p1_power",&spower1);
         TRON("1");
 
@@ -533,11 +532,11 @@ void initdisplay( void )
 
         disp_put_var( "p1_life",&life1);
         TRON("1");
- 
+
        disp_put_var( "p2_life",&life2);
         TRON("1");
 
-        disp_put_var("t_clock",&t_clock);	
+        disp_put_var("t_clock",&t_clock);
         TRON("1");
 
 	disp_put_var("actual",&actual);
@@ -545,8 +544,8 @@ void initdisplay( void )
 
 	disp_put_var("actual2",&actual2);
         TRON("1");
-
 #endif
+
        	run_script( 0, fight_round, charname[sel1], charname[sel2] );
         TRON("1");
 
@@ -857,7 +856,7 @@ void refresh_vflags( void )
 }
 /********************************************************/
 // Claudemir
-// função para desenhar o rosto no lado da barra de life
+// funï¿½ï¿½o para desenhar o rosto no lado da barra de life
 void refresh_life_faces (void)
 {
        TRON("q"); 

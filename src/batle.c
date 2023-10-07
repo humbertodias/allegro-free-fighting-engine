@@ -40,6 +40,8 @@
 #include "monitor.h"
 #include "batle.h"
 
+struct PLAYER_DATA_STRUCT p1;
+struct PLAYER_DATA_STRUCT p2;
 
 /*******************************************/
 int K_batle (void){

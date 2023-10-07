@@ -90,12 +90,7 @@ BITMAP *Lock;
 BITMAP *Bkgd;
 BITMAP *Frgd;
 /* BITMAP *Blood; */
-#if TIMEOVER > 0
-BITMAP *B_clock[ 11 ];
-#endif
-#if PERFECT == 1
-BITMAP *B_prfct;
-#endif 
+
 /******************************************/
 char animated;
 char foreground;
@@ -108,11 +103,8 @@ unsigned char j;
 char gmode , diff;
 // story variables
 char story;
-int sel1, sel2;
-// string and key variables
-char charname [ 1000 ][ 30 ] ;
-char bkgdname [ 200 ][ 30 ] ;
-char flcname [ 100 ][ 30 ] ;
+
+
 
 int nbchar;
 int nbbkgd;
@@ -170,9 +162,6 @@ int life1 , life2;
 int spower1 , spower2;
 char vic_flag;
 char vic1 , vic2;
-#if TIMEOVER > 0
-int t_clock;
-#endif
 
 int clone = 0;
 char inverted = 0;
@@ -212,7 +201,7 @@ int alt_color , tcolor , bcolor;
 int sel_bkgd;
 int text_color;
 int deb;
-char fight_round;
+
 int actual = 0;			// actual sprite status
 int actual2 = 0;
 char ak , ak2 = 0;          // flag air-kick

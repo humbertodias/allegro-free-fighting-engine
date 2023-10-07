@@ -391,12 +391,11 @@ void run_script(int modo, int round, char *dir_p1, char *dir_p2)
    char text[80];
    char ch=' ';
    int i=0;
-   int player;
    char dir_px[100];
    FILE *scriptfile;
  
    
- for(player=2;player>=1;player--)
+ for(int player=2;player>=1;player--)
  {
       if(player==1)
       {
@@ -457,7 +456,9 @@ void run_script(int modo, int round, char *dir_p1, char *dir_p2)
 	   i=0;
 	//-------------------------------/   
 	} //while(!feof...
+    if(scriptfile != NULL) {
         fclose( scriptfile );
+    }
      } // if(fopen....
  }//for(player...   
 }

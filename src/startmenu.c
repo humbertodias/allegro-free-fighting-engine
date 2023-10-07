@@ -35,9 +35,10 @@
 #include "wavsounds.h"
 #include "loads.h"
 
+// string and key variables
 char charname [ 1000 ][ 30 ] ;
-char bkgdname [ 200 ][ 30 ] ;
-char flcname [ 100 ][ 30 ] ;
+char fight_round = 0;
+int sel1 =1, sel2=1;
 
 /**************************************************/
 int startmenu (void)
@@ -105,7 +106,7 @@ int startmenu (void)
   // este numeros, acho ? s�o os numeros de personagens e bkgs!
   // cx
   int fx;
-  for (cx = -4; cx < 7; cx++)
+  for (int cx = -4; cx < 7; cx++)
     {
       fx = cx;
 
