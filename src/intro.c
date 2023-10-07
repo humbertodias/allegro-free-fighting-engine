@@ -25,7 +25,6 @@
     *************************************************************************
 */
 
-#include <stdio.h>
 #include "global.h"
 #include "macros.h"
 #include "config.h"
@@ -36,6 +35,7 @@
 #include "wavsounds.h"
 #include "intro.h"
 /***********************************************/
+
 
 void intro( void )
 {

@@ -23,24 +23,51 @@
     *                                                                       *
     *************************************************************************
 */
-#ifndef _DEFS_H
-#define _DEFS_H
 
-/* Compiller defines */
-#define DOS 1
-#define DOS_DJGPP 1
+#ifndef _INIFILES_H
+#define _INIFILES_H
 
-#define LINUX 2
-#define GCC   2
-#define EGCS  2
+extern char sret[];
 
-#define CYGWIN 3
-#define MSVCPP 4
-#define BEOS 5
-#define FREEBSD 6
-#define OS2 7
-#define MINGW32 DOS
+int listfiles(char xret[1000][30], const char *directory, const char *sufixname);
+
+typedef struct _L_SECTION {
+
+    char variable[40];
+    char value[255];
+
+} _L_SECTION;
+
+typedef struct _INI_section {
+
+    char namesection[40];
+    int len;
+    _L_SECTION reg[500];
+
+} INI_section;
+
+typedef struct _INI_inifile {
+
+    char namefile[40];
+    int len;
+    char section[40][500];
+
+} INI_inifile;
+
+/* Protos ......*/
+char *ini_get_str(char *sname_file, char *section, char *svalue,
+		  char *sdefault);
+
+int ini_get_int(char *sname_file, char *section, char *svalue,
+		int idefault);
+
+INI_section ini_get_vars(char *sname_file, char *section);
+
+INI_inifile ini_get_section(char *sname_file);
+
+void getcolorstr(int *r,int *g,int *b, char color[20]);
 
 #endif
+/*******************************************************/
 
 // EOF

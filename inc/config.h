@@ -39,8 +39,7 @@
 
 */
 
-// # include "so.inc"
-#define SO LINUX
+#include "so.inc"
 
 /*   GAME_DEBUG
      0 = NOT debug mode 
@@ -50,7 +49,7 @@
      *Motive of change: binary small and faster
 */
 
-#define GAME_DEBUG 0 
+#define GAME_DEBUG 0
 
 /*
     CHEAT
@@ -58,7 +57,7 @@
     1 = allow change...
  */
 
-#define CHEAT 1
+#define CHEAT 0
 
 /*
   TIMEOVER
@@ -94,7 +93,8 @@
   1 - enable
   * activate of features in development *
 */
-#define TEMP 0 
+#define TEMP 1
+
 
 
 #define DEF_MAX_MONITOR_VARS 150
@@ -110,6 +110,11 @@
 #define DEF_PAN 128
 #define DEF_PITCH 1000
 
+
+#define DIR_SPRITES "data" DIR_BAR "sprites" DIR_BAR
+#define DIR_WAV "data" DIR_BAR "wav" DIR_BAR
+#define DIR_MIDI "data" DIR_BAR "midi" DIR_BAR
+#define DIR_BKGDS "data" DIR_BAR "bkgds" DIR_BAR
 
 /* END OF CONFIG FLAGS */
 

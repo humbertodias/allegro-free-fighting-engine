@@ -90,12 +90,7 @@ BITMAP *Lock;
 BITMAP *Bkgd;
 BITMAP *Frgd;
 /* BITMAP *Blood; */
-#if TIMEOVER > 0
-BITMAP *B_clock[ 11 ];
-#endif
-#if PERFECT == 1
-BITMAP *B_prfct;
-#endif 
+
 /******************************************/
 char animated;
 char foreground;
@@ -108,11 +103,9 @@ unsigned char j;
 char gmode , diff;
 // story variables
 char story;
-int sel1, sel2;
-// string and key variables
-//char charname [ 1000 ][ 30 ];
-//char bkgdname [ 1000 ][ 30 ];
-//char flcname  [ 1000 ][ 30 ];
+
+
+
 int nbchar;
 int nbbkgd;
 int nbflc;
@@ -169,9 +162,6 @@ int life1 , life2;
 int spower1 , spower2;
 char vic_flag;
 char vic1 , vic2;
-#if TIMEOVER > 0
-int t_clock;
-#endif
 
 int clone = 0;
 char inverted = 0;
@@ -183,12 +173,13 @@ int fx, fy;
 int ok = 1;                         // Loop until ok==0
 int s = 2;                          // Scroll speed 2 pixels per frame
 int misc;
-//long t1, t2,
+long t1, t2;
 long n;				// For calculating FPS
 int flag = 0;                     // sprite cycling flags
 int flag2 = 0;
 char hflag = 0, hflag2 = 0;
 char frameskip = 0;
+//char rround = 0;
 char skp_flag = 0;
 int sens1 = 0;                     // jump flags
 int sens2 = 0;
@@ -210,7 +201,7 @@ int alt_color , tcolor , bcolor;
 int sel_bkgd;
 int text_color;
 int deb;
-char fight_round;
+
 int actual = 0;			// actual sprite status
 int actual2 = 0;
 char ak , ak2 = 0;          // flag air-kick
@@ -248,18 +239,18 @@ char accel_flag , gfx_flag;
 char snd_flag , midi_flag;
 char wind_flag;
 char tnt2 = 0;
-char open1[ 40 ];
-char open2[ 40 ];
-char open3[ 40 ];
-char open4[ 40 ];
-char open5[ 40 ];
+char open1[ 60 ];
+char open2[ 60 ];
+char open3[ 60 ];
+char open4[ 60 ];
+char open5[ 60 ];
 char title[ 20 ];
 extern char say1[500] ;
 extern char say2[500] ;
 
 // END OF GLOBAL DEFINITIONS
 
-// declarações de variaveis para o KOF2003
+// declaraï¿½ï¿½es de variaveis para o KOF2003
 BITMAP *tface1;				//p1 face pequena ao lado da barra
 BITMAP *tface2;				//p2 face pequena ao lado da barra
 
@@ -270,13 +261,13 @@ BITMAP *tface_border2;
 char file2[200];			//var para carregar pcx's
 //char buffer[200];			//var tb para carregar pcx's
 
-int opt;				//int para realizar comparações
+int opt;				//int para realizar comparaï¿½ï¿½es
 int lineprint;
 
 void man( void );
-char get_kstatus ( char strg[] );
-char check_kstatus1 ( char ctrl_key );
-char check_kstatus2 ( char ctrl_key );
+//char get_kstatus ( char strg[] );
+//char check_kstatus1 ( char ctrl_key );
+//char check_kstatus2 ( char ctrl_key );
 void Intro( void );
 
 #endif

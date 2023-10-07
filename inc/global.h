@@ -124,10 +124,10 @@ struct PLAYER_DATA_STRUCT
 	struct SMOVE smovex;
 };
 
-struct PLAYER_BMP_STRUCT Player1;
-struct PLAYER_BMP_STRUCT Player2;
-struct PLAYER_DATA_STRUCT p1;
-struct PLAYER_DATA_STRUCT p2;
+extern struct PLAYER_BMP_STRUCT Player1;
+extern struct PLAYER_BMP_STRUCT Player2;
+extern struct PLAYER_DATA_STRUCT p1;
+extern struct PLAYER_DATA_STRUCT p2;
 /******************************************/
 
 extern DATAFILE *creditflic ;
@@ -180,7 +180,7 @@ extern BITMAP *Carton_WN ;
 extern BITMAP *Carton_KO ;
 
 #if TIMEOVER == 1
-BITMAP *Carton_TO ;
+extern BITMAP *Carton_TO ;
 #endif
 
 extern BITMAP *novic0 ;
@@ -214,19 +214,17 @@ extern BITMAP *tface_border2;
 extern char buffer[100];
 extern char file2[200];
 
-extern int opt; /* para as novas opções, intro, display, winner e etc. */
+extern int opt; /* para as novas opï¿½ï¿½es, intro, display, winner e etc. */
 
 /* extern BITMAP *Blood ; */
 
 #if TIMEOVER > 0
-BITMAP *B_clock[ 11 ];
+extern BITMAP *B_clock[ 11 ];
 #endif
 
 #if PERFECT == 1
-BITMAP *B_prfct;
+extern BITMAP *B_prfct;
 #endif
-
-
 
 extern char animated ;
 extern char foreground ;
@@ -254,9 +252,9 @@ extern char debug ;
 
 // string and key variables
 
-char charname [ 1000 ][ 30 ] ;
-char bkgdname [ 200 ][ 30 ] ;
-char flcname [ 100 ][ 30 ] ;
+extern char charname [ 1000 ][ 30 ] ;
+extern char bkgdname [ 200 ][ 30 ] ;
+extern char flcname [ 100 ][ 30 ] ;
 
 extern int nbchar ;
 extern int nbbkgd ;
@@ -356,7 +354,7 @@ extern int fx, fy;
 extern int ok ;                         // Loop until ok==0
 extern int s ;                          // Scroll speed (2 pixels per frame)
 extern int misc ;
-//long t1, t2,
+extern long t1, t2;
 extern long n;								// For calculating FPS
 
 extern int flag ;                     // sprite cycling flags
@@ -470,11 +468,11 @@ extern char wind_flag ;
 
 extern char tnt2 ;
 
-extern char open1[ 40 ] ;
-extern char open2[ 40 ] ;
-extern char open3[ 40 ] ;
-extern char open4[ 40 ] ;
-extern char open5[ 40 ] ;
+extern char open1[ 60 ] ;
+extern char open2[ 60 ] ;
+extern char open3[ 60 ] ;
+extern char open4[ 60 ] ;
+extern char open5[ 60 ] ;
 extern char title[ 20 ] ;
 extern char say1[500] ;
 extern char say2[500] ;
@@ -489,7 +487,7 @@ extern void text_shadow( BITMAP *outbm, FONT *font, char *text, int x, int y, in
 extern void text_centre_shadow( BITMAP *outbm, FONT *font, char *text, int x, int y, int color );
 
 //extern char max_nbf1, max_nbf2;
-char inverted ;
+extern char inverted ;
 
 
 

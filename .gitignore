@@ -1,3 +1,25 @@
-data_files
+data
 distro
 build
+.idea
+cmake-build-*
+CMakeFiles
+*.o
+*.old
+kof2003*
+.DS_Store
+k91v12s.zip
+
+# configurations
+fonts.dat
+game.ini
+title.mp3
+title.pcx
+open.flc
+inc/so.inc
+
+valgrind*
+
+main
+main.dSYM
+Kof91

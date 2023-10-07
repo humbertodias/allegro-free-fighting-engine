@@ -23,7 +23,6 @@
     *                                                                       *
     *************************************************************************
 */
-
 #include <stdio.h>
 #include <string.h>
 #include "allegro.h"
@@ -41,13 +40,22 @@
 #include "global.h"
 #include "main.h"
 
-int main()
+#if TIMEOVER > 0
+BITMAP *B_clock[ 11 ];
+#endif
+#if PERFECT == 1
+BITMAP *B_prfct;
+#endif
+
+char bkgdname [ 200 ][ 30 ] ;
+char flcname [ 100 ][ 30 ] ;
+
+int main(int, char **)
 {
-	
 	int loop = 0;
 	story = 0;
 	lineprint = 0 ;
-	//   srand(time(NULL));
+	srand(time(NULL));
 	TRONSTART( "\n  **WARNING: Initializing KOF2003..." );
 	allegro_init(); // inicia a lib Allegro
 	/*   set_window_title ("initialising engine ..."); */
@@ -70,7 +78,7 @@ int main()
 			start_y = 20;
 			break;
 			case 0 :
-			// modo padrão de video 230x200
+			// modo padrï¿½o de video 230x200
 			screen_height = 200;
 			screen_width = 320;
 			start_y = 0;
@@ -90,8 +98,8 @@ int main()
 			start_y = 0;
 			break;
 			// adicionando o modo 800x600 !!
-			// Bem... tem que ter uma máquina poderosa e uma
-			// boa placa de video. Potênciaaaaaa...
+			// Bem... tem que ter uma mï¿½quina poderosa e uma
+			// boa placa de video. Potï¿½nciaaaaaa...
 			case 5 :
 			screen_height = 600;
 			screen_width = 800;
@@ -152,7 +160,7 @@ int main()
 		*/
 	}
 
-	// bem, o planao é tirar esses crédito, horrivel no inicio da engine !
+	// bem, o planao ï¿½ tirar esses crï¿½dito, horrivel no inicio da engine !
 	// bem... tirado :)
 	/*
 	 allegro_message(
@@ -166,7 +174,7 @@ int main()
 	*/
 
 	/*
-	//Ninguém precisa ficar sabendo,certo !?
+	//Ninguï¿½m precisa ficar sabendo,certo !?
 	if ( accel_flag )
 		allegro_message( "\nUsing Accel.\n" );
 	*/
@@ -222,7 +230,7 @@ int main()
 	TRON( "set_color_depth(16)..." );
 	set_color_depth( 16 );
 	//set_gfx_mode(GFX_SAFE, 320, 200, 0, 0); // claudemir 320x200
-	if ( set_gfx_mode( BR_GFX, screen_width, screen_height, 0, 0 ) != 0 )
+	if ( set_gfx_mode( GFX_AUTODETECT, screen_width, screen_height, 0, 0 ) != 0 )
 	{
 		TRON( "set_color_depth(15)..." );
 		set_color_depth ( 15 );
@@ -241,7 +249,7 @@ int main()
 	n = 0;
 	/*** end of GFX mode setting ***/
 	
-	text_mode ( -1 ); // está função faz os texto ficarem transparentes :)
+	text_mode ( -1 ); // estï¿½ funï¿½ï¿½o faz os texto ficarem transparentes :)
 	small_font = font;
 	virtscreen = create_bitmap( 325, 205 );
 	if ( ( gfmode == 1 ) || ( gfmode > 2 ) )
@@ -261,9 +269,9 @@ int main()
 	loadsounds();
 	set_volume ( get_snd_vol() , midi_vol );
 
-        nbchar=listfiles( charname, "sprites", "" );	
-	nbbkgd=listfiles( bkgdname, "bkgds", "pcx" );
-        nbflc=listfiles( flcname, "bkgds", "flc" );
+        nbchar=listfiles( charname, DIR_SPRITES, "" );
+	nbbkgd=listfiles( bkgdname, DIR_BKGDS, "pcx" );
+        nbflc=listfiles( flcname, DIR_BKGDS, "flc" );
 
 	for ( cx = 0; cx < nbflc; cx++ )
 	{
@@ -294,14 +302,14 @@ int main()
 	wimpact_nbf = get_config_int ( 0 , "wimpact_nbf" , 1 );
 	simpact_nbf = get_config_int ( 0 , "simpact_nbf" , 1 );
 	bimpact_nbf = get_config_int ( 0 , "bimpact_nbf" , 1 );
-	if ( ( Lock = xload_pcx ( "sprites" DIR_BAR "lock.pcx" , 0 ) ) == NULL )
+	if ( ( Lock = xload_pcx ( DIR_SPRITES "lock.pcx" , 0 ) ) == NULL )
 	{
 		ERROR( "lock.pcx missing" );
 		//exit( 0 );
 	}
 	for ( num = 1; num < ( wimpact_nbf + 1 ); ++num )
 	{
-		sprintf( file, "sprites" DIR_BAR "wimpact%d.pcx", num );
+		sprintf( file, DIR_SPRITES "wimpact%d.pcx", num );
 		if ( ( WImpact[ num ] = xload_pcx ( file , 0 ) ) == NULL )
 		{
 			sprintf( log_mess, "Can't open %s file", file );
@@ -311,12 +319,12 @@ int main()
 	}
 	for ( num = 1; num < ( simpact_nbf + 1 ); ++num )
 	{
-		sprintf( file, "sprites" DIR_BAR "simpact%d.pcx", num );
+		sprintf( file, DIR_SPRITES "simpact%d.pcx", num );
 		SImpact[ num ] = xload_pcx ( file , 0 );
 	}
 	for ( num = 1; num < ( bimpact_nbf + 1 ); ++num )
 	{
-		sprintf( file, "sprites" DIR_BAR "bimpact%d.pcx", num );
+		sprintf( file, DIR_SPRITES "bimpact%d.pcx", num );
 		BlockImpact[ num ] = xload_pcx ( file , 0 );
 	}
 	// Get Control Keys
@@ -351,12 +359,11 @@ int main()
 		//exit( 0 );
 	}
 	// SCAN CHARS DIRECTORY
-	for ( cx = 0; cx < nbchar; cx++ )
+	for ( int cx = 0; cx < nbchar; cx++ )
 	{
-		sprintf( passeur, "sprites" DIR_BAR "%s" DIR_BAR "static1.pcx", charname[ cx ] );
-		present[ cx ] = ( xload_pcx( passeur, Pal ) != NULL );
-
-		sprintf( passeur, "sprites" DIR_BAR "%s" DIR_BAR "char.ini", charname[ cx ] );
+		sprintf( passeur, DIR_SPRITES "%s" DIR_BAR "static1.pcx", charname[ cx ] );
+        present[ cx ] = ( xload_pcx( passeur, Pal ) != NULL );
+		sprintf( passeur, DIR_SPRITES "%s" DIR_BAR "char.ini", charname[ cx ] );
 		override_config_file( passeur );
 		secretchar[ cx ] = get_config_int ( charname[ cx ], "locked" , 0 );
 	}
@@ -374,14 +381,14 @@ int main()
 	}
 	// fim da rotina de SOM
 
-	//if ( ( music = xload_midi ( "midi" DIR_BAR "select.mid" ) ) == NULL )
+	//if ( ( music = xload_midi ( DIR_MIDI "select.mid" ) ) == NULL )
 	//{
         //	ERROR( "error in midi file format" );
 	//	allegro_exit();
 	//	exit( 0 );
 	//}
 	
-	music = xload_midi ( "midi" DIR_BAR "select.mid" );
+	music = xload_midi ( DIR_MIDI "select.mid" );
 	TRON( "play midi" );
 	if( midi_ok() ) play_midi ( music , 1 );
 	TRON( "OK." );
@@ -411,7 +418,7 @@ int main()
 	{
 		TRON( " /* inits() */ " );
 		inits();
-		
+
 		while ( 1 )
 		{
 			/* StartMenu*/
@@ -451,7 +458,7 @@ void Intro( void )
 	clear ( screen );
 
 	// newmessages !!
-	// bom lugar pra colocar a Intro .flc e message de inicialização !
+	// bom lugar pra colocar a Intro .flc e message de inicializaï¿½ï¿½o !
 
 	textout_centre(virtscreen, font, 
 			"KOF2003 - A Engine Fight Game"
@@ -505,7 +512,7 @@ textout_centre(virtscreen, font,
 	, virtscreen->w/2, lineprint+=11, makecol(255,255,255));
         text_centre_shadow(virtscreen, font,
 	"GPL Ver. 2, June 1991, see licence.txt"
-//        "áéíóúãõñà ÁÉÍÓÚÃÕÀÑ" //test diacritcs ...
+//        "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" //test diacritcs ...
        , virtscreen->w/2, lineprint+=15, makecol(0,0,255));
 
 

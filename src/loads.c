@@ -37,8 +37,10 @@
  patch: ric@asbyte.com.br
 **************************************************************************/
 
+struct PLAYER_BMP_STRUCT Player1;
+struct PLAYER_BMP_STRUCT Player2;
 
-static char c_midi_ok=0;
+char c_midi_ok=0;
 /*************************************************************************
 * __load_sprite__() look in macros.h the xload_pcx macro 
 *
@@ -53,9 +55,9 @@ BITMAP *__load_sprite__( const char *file, PALLETE Pal, char *n_file , int n_lin
 BITMAP * __load_sprite__( const char * file, PALLETE Pal )
 {
 #endif
-	static BITMAP *p1;
-	static BITMAP *p2;
-	static int missing;
+	BITMAP *p1;
+	BITMAP *p2;
+	int missing;
 
 	missing=0;
 #if GAME_DEBUG > 0
@@ -129,7 +131,7 @@ BITMAP * __xload_pcx__( const char * file, PALLETE Pal )
 #endif
         if ( missing == 1 ){
 //	    TRON("CREATING IMAGE...");
-	    PCX_RETURNED = create_bitmap( 113,16 ); //load_pcx( "sprites" DIR_BAR "miss.pcx", Pal );
+	    PCX_RETURNED = create_bitmap( 113,16 ); //load_pcx( DIR_SPRITES "miss.pcx", Pal );
             rectfill( PCX_RETURNED, 0, 0, 112,15, makecol( 255, 0, 0 ) );
 	    rect( PCX_RETURNED, 0, 0, 112,15, makecol( 0, 0, 255 ) );
 	    textout( PCX_RETURNED, small_font, "Image Missing!", 2, 4, 0 );
@@ -156,7 +158,7 @@ MIDI *__xload_midi__( const char * file )
 {
 #endif	
 	MIDI * tmpmidi;
-	static int missing;
+	int missing;
 
 	missing=0;
 #if GAME_DEBUG > 0
@@ -189,7 +191,7 @@ SAMPLE *__xload_sample__( const char * file )
 {
 #endif	
         SAMPLE *tmpsample;
-	static char missing;
+	char missing;
 
 	missing=0;
 	
@@ -218,8 +220,8 @@ char check_file( const char * file, char * n_file , int n_line )
 char check_file( const char * file )
 {
 #endif
-        static FILE *tmpfile;
-	static char missing; 
+        FILE *tmpfile;
+	char missing;
 
         missing =0 ;
 	if ( ( tmpfile=fopen( file, "r" ) ) == NULL )
@@ -244,8 +246,8 @@ char check_file( const char * file )
 }
 /****************************************/
 char file_missing( const char * file ){
-        static FILE *tmpfile;
-        static char missing;
+        FILE *tmpfile;
+        char missing;
                                                                                 
         missing =0;
         if ( ( tmpfile=fopen( file, "r" ) ) == NULL )
@@ -284,7 +286,7 @@ BITMAP * create_shadow(BITMAP * src, int w, int h, char t_shadow)
 void load_sprites1( void )
 {
 	TRON( "\nload_sprites1()" );
-	sprintf( passeur, "sprites" DIR_BAR "%s" DIR_BAR, charname[ sel1 ] );
+	sprintf( passeur, DIR_SPRITES "%s" DIR_BAR, charname[ sel1 ] );
 	TRON( "loading..." );
 	for ( num = 1; num < ( p1.statik.nbf + 1 ); ++num )
 	{
@@ -500,7 +502,7 @@ void load_sprites2( void )
 {
 	char myfile[500];
 	TRON( "\nload_sprites2()" );
-	sprintf( passeur, "sprites" DIR_BAR "%s" DIR_BAR, charname[ sel2 ] );
+	sprintf( passeur, DIR_SPRITES "%s" DIR_BAR, charname[ sel2 ] );
 	
 	if(clone){
 	   sprintf( myfile, "%spalette.ini", passeur );   
@@ -716,7 +718,7 @@ void load_kick1 ( void )
 {
 	int i;
 	TRON( "\nload_kick1()" );
-	sprintf( passeur, "sprites" DIR_BAR "%s" DIR_BAR, charname[ sel1 ] );
+	sprintf( passeur, DIR_SPRITES "%s" DIR_BAR, charname[ sel1 ] );
 
 	for ( i = 1; i < ( p1.skick.nbf + 1 ); ++i )
 	{
@@ -731,7 +733,7 @@ void load_kick1 ( void )
 void load_kick2 ( void )
 {
 	TRON( "\nload_kick2()" );
-	sprintf( passeur, "sprites" DIR_BAR "%s" DIR_BAR, charname[ sel2 ] );
+	sprintf( passeur, DIR_SPRITES "%s" DIR_BAR, charname[ sel2 ] );
 	rectfill( zoomscreen, 0, 0, zoomscreen->w, zoomscreen->h, makecol( 255, 0, 255 ) );
 	for ( num = 1; num < ( p2.skick.nbf + 1 ); ++num )
 	{
@@ -743,7 +745,7 @@ void load_kick2 ( void )
 /************************************************************************/
 void load_win1 ( void )
 {
-	sprintf( passeur, "sprites" DIR_BAR "%s" DIR_BAR, charname[ sel1 ] );
+	sprintf( passeur, DIR_SPRITES "%s" DIR_BAR, charname[ sel1 ] );
 	for ( num = 1; num < ( p1.outwin.nbf + 1 ); ++num )
 	{
 		sprintf( file, "%soutwin%d.pcx", passeur, num );
@@ -754,7 +756,7 @@ void load_win1 ( void )
 void load_win2 ( void )
 {
 	TRON( "\nload_win2()" );
-	sprintf( passeur, "sprites" DIR_BAR "%s" DIR_BAR, charname[ sel2 ] );
+	sprintf( passeur, DIR_SPRITES "%s" DIR_BAR, charname[ sel2 ] );
 	rectfill( virtscreen, 0, 0, virtscreen->w, virtscreen->h, makecol( 255, 0, 255 ) );
 
 	for ( num = 1; num < ( p2.outwin.nbf + 1 ); ++num )

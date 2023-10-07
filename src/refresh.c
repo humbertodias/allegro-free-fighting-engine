@@ -33,7 +33,7 @@
 void blit_KOF91( void )
 {
 
-	static int y;
+	int y;
 
 	if ( ( gfmode == 1 ) || ( gfmode > 2 ) )
 	{
@@ -83,7 +83,7 @@ void blit_Bkgd( void )
 void refresh_screen( void )
 {
 
-	static int y;
+	int y;
 	if ( ( gfmode == 1 ) || ( gfmode > 2 ) )
 	{
 		stretch_blit ( virtscreen , scanliner , 0, 0, 320, 200,

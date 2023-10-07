@@ -37,7 +37,7 @@
 #include "macros.h"
 #include "initfiles.h"
 
-#if SO==LINUX
+#if (SO == LINUX) || (SO == FREEBSD) || (SO == OSX)
 #include <dirent.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -131,7 +131,7 @@ char *ini_get_str(char *sname_file, char *section, char *svalue,
 
 	    //skip remarks in the .ini file ....
 	    if (ch == '#')
-		while (!feof(inifile) && (ch = getc(inifile) != 10));;
+		while (!feof(inifile) && (ch = getc(inifile) != 10));
 
 	    // read lines of section
 	    if (ch!=10 && ch!=13 && !isspace(ch)) {
@@ -351,8 +351,8 @@ INI_inifile ini_get_section(char *sname_file)
 
 /*********************************************/
 void getcolorstr(int *r,int *g,int *b, char color[20]) {
-	static char rgb[4][5];
-	static int i, l, ll;
+	char rgb[4][5];
+	int i, l, ll;
 
 
 	l=0; ll=0;

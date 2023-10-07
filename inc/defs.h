@@ -23,36 +23,24 @@
     *                                                                       *
     *************************************************************************
 */
-#ifndef _DISPLAY_H
-#define _DIAPLAY_H
+#ifndef _DEFS_H
+#define _DEFS_H
 
-void disp_ini_var( void );
-void disp_put_var(char name_variable[40], int *pvar);
-#if GAME_DEBUG > 0
-void show_fpc( void );
-#endif
-void displays( void );
-void initdisplay( void );
-void refresh_lifebar( void );
-void refresh_powerbar( void );
-void refresh_timer( void );
-void start_timer( void );
-void refresh_vflag( void );
-// claudemir
-void refresh_life_faces( void );
+/* Compiller defines */
+#define DOS 1
+#define DOS_DJGPP 1
 
-void text_centre_shadow( BITMAP *outbm, FONT *font, char *text, int x, int y, int color );
-void text_shadow( BITMAP *outbm, FONT *font, char *text, int x, int y, int color );
-void refresh_vflags( void );	
-int xget_config_int( char *section, char *var_name, int val_defa );
-char *xget_config_string( char *section, char *var_name, char *val_defa );
-void save_display( void );
-void PUT_t_clock( int param );
-int GET_t_clock( void );
-void K_listvars( char param[40] ); // monitor command 
-void K_defvar( char namevar[40] );
-void K_setvar( char namevar[40], char param[40], char param2[40] ); // monitor command 
-void adjusts( const char f_s );
+#define LINUX 2
+#define GCC   2
+#define EGCS  2
+
+#define CYGWIN 3
+#define MSVCPP 4
+#define BEOS 5
+#define FREEBSD 6
+#define OS2 7
+#define OSX 8
+#define MINGW32 DOS
 
 #endif
 

@@ -33,13 +33,13 @@
 #include "initfiles.h"
 
 /************************************************************************/
-static int rgb[ DEF_MAX_CLONE_PIXELS ];
-static int xrgb[ DEF_MAX_CLONE_PIXELS ];
-int i;
-static int ii;
-static int iii;
+int rgb[ DEF_MAX_CLONE_PIXELS ];
+int xrgb[ DEF_MAX_CLONE_PIXELS ];
+//int i;
+int ii;
+int iii;
 static INI_section color_default;
-static int palette_found=0;
+int palette_found=0;
 /************************************************************************/
 void set_palette_found( int xset ){
      palette_found=xset;
@@ -51,9 +51,9 @@ int view_palette_found(void){
 /************************************************************************/
 void load_palette( char *file_palette, int nclone ){
       static INI_section clone_palette;
-      static char xname[20],yname[20];
-      static int r,g,b;
-      static FILE *tmpfile;
+      char xname[20],yname[20];
+      int r,g,b;
+      FILE *tmpfile;
 
       if ( ( tmpfile=fopen( file_palette, "r" ) ) == NULL )
       {
@@ -98,7 +98,7 @@ void load_palette( char *file_palette, int nclone ){
 /************************************************************************/
 BITMAP * create_palette( BITMAP *sprite )
 {
-        static BITMAP *tmp_image;
+        BITMAP *tmp_image;
 // Create a tmp_image
         tmp_image=create_bitmap(sprite->w,sprite->h);
         rectfill(tmp_image,0,0,sprite->w,sprite->h,makecol(255,0,255));

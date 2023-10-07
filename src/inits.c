@@ -31,8 +31,10 @@
 #include "refresh.h"
 #include "options.h"
 #include "wavsounds.h"
-#include  "sprites.h"
+#include "sprites.h"
 #include "inits.h"
+
+char sret[255 * 2];
 
 int inits( void )
 {
@@ -57,12 +59,12 @@ int inits( void )
 	Bar2 = create_bitmap( 200,50 ) ;
 	fill_sprite( Bar2 );
 
-	Carton_KO = xload_pcx( "sprites" DIR_BAR "mode.pcx", Pal );
+	Carton_KO = xload_pcx( DIR_SPRITES "mode.pcx", Pal );
 
-	Carton_WN = xload_pcx( "sprites" DIR_BAR "pick.pcx", Pal );
+	Carton_WN = xload_pcx( DIR_SPRITES "pick.pcx", Pal );
 
 #if TIMEOVER > 0
-	Carton_TO = xload_pcx( "sprites" DIR_BAR "timeup.pcx", Pal );
+	Carton_TO = xload_pcx( DIR_SPRITES "timeup.pcx", Pal );
 #endif
 
 	gmode = 2 ;
@@ -186,10 +188,7 @@ int inits( void )
 			/* Return to text mode */
 			allegro_exit() ;
 			/* Display some stats if available */
-			/*                  if ( nbpar > 0 )
-			 
-			                  allegro_message( "----> %ld FPS\n\n", n / (t2 - t1 ) );
-			*/
+              if ( nbpar > 0 ) allegro_message( "----> %ld FPS\n\n", n / (t2 - t1 ) );
 			TRON( "ESC pressioned..." );
 			exit( 0 ) ;
 		}
@@ -203,7 +202,7 @@ int inits( void )
 
 		diff = 1 ;
 
-		Carton_KO = xload_pcx( "sprites" DIR_BAR "diff.pcx", Pal );
+		Carton_KO = xload_pcx( DIR_SPRITES "diff.pcx", Pal );
 
 		clear_keybuf() ;
 
