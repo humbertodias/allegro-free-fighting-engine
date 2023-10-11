@@ -34,9 +34,8 @@ In order to build, you need
 Compared to the original, the buildsystem is ported to [cmake](https://cmake.org/).
 
 ```
-$ mkdir build
-$ cd build
-$ cmake ..
+cmake -S . -B build
+cmake --build build
 ```
 
 ## Playing
