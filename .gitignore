@@ -6,6 +6,10 @@ cmake-build-*
 CMakeFiles
 *.o
 *.old
+cmake_install.cmake
+CMakeCache.txt
+demos
+_deps
 kof2003*
 .DS_Store
 k91v12s.zip
