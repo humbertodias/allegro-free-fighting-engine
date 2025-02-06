@@ -9,7 +9,7 @@ include(FetchContent)
 FetchContent_Declare(
         allegro5
         GIT_REPOSITORY https://github.com/liballeg/allegro5.git
-        GIT_TAG        5.2.8.0
+        GIT_TAG        5.2.10.1
 )
 FetchContent_GetProperties(allegro5)
 FetchContent_Populate(allegro5)
@@ -18,7 +18,7 @@ FetchContent_Populate(allegro5)
 include(FetchContent)
 FetchContent_Declare(
         allegro4
-        GIT_REPOSITORY https://github.com/humbertodias/Allegro-Legacy
+        GIT_REPOSITORY https://github.com/NewCreature/Allegro-Legacy
         GIT_BRANCH        master
 )
 FetchContent_GetProperties(allegro4)
