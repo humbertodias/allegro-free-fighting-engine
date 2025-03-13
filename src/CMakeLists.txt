@@ -28,3 +28,7 @@ add_executable(koflinux ${koflinux_SRCS})
 #add_definitions(-DSO=LINUX)
 target_link_libraries(koflinux ${ALLEGRO_LIBRARY})
 
+# Fix multiple definition errors with -fcommon
+# This is needed for legacy C code with multiple definitions of global variables
+target_compile_options(koflinux PRIVATE -fcommon)
+
