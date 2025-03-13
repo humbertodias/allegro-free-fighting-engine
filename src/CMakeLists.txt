@@ -32,3 +32,19 @@ target_link_libraries(koflinux ${ALLEGRO_LIBRARY})
 # This is needed for legacy C code with multiple definitions of global variables
 target_compile_options(koflinux PRIVATE -fcommon)
 
+# Disable specific warnings that cannot be fixed easily without restructuring the code
+target_compile_options(koflinux PRIVATE 
+  -Wno-deprecated-declarations 
+  -Wno-stringop-overflow
+  -Wno-write-strings
+  -Wno-format
+  -Wno-pointer-sign
+  -Wno-incompatible-pointer-types
+  -Wno-unused-but-set-variable
+  -Wno-unused-variable
+  -Wno-unused-parameter
+)
+
+# Define ALLEGRO_NO_DEPRECATED to prevent deprecation warnings
+add_definitions(-DALLEGRO_NO_DEPRECATED)
+

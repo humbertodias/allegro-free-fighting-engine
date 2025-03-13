@@ -828,10 +828,10 @@ void text_centre_shadow( BITMAP *outbm, FONT *font,
 //            TRON(log_mess);
 	}
 
-	textout_centre( outbm, font, outtext, x + 1, y + 1, 0 );
-        textout_centre( outbm, font, dc,   x + 1, y + 1, 0 );
-	textout_centre( outbm, font, outtext, x, y, color );
-        textout_centre( outbm, font, dc, x, y, color );
+	textout_centre_ex( outbm, font, outtext, x + 1, y + 1, 0, -1 );
+        textout_centre_ex( outbm, font, dc,   x + 1, y + 1, 0, -1 );
+	textout_centre_ex( outbm, font, outtext, x, y, color, -1 );
+        textout_centre_ex( outbm, font, dc, x, y, color, -1 );
          
 }
 /********************************************/
@@ -840,8 +840,8 @@ void text_centre_shadow( BITMAP *outbm, FONT *font,
 void text_shadow( BITMAP *outbm, FONT *font,
 				  char *text, int x, int y, int color )
 {
-	textout( outbm, font, text, x + 1, y + 1, 0 );
-	textout( outbm, font, text, x, y, color );
+	textout_ex( outbm, font, text, x + 1, y + 1, 0, -1 );
+	textout_ex( outbm, font, text, x, y, color, -1 );
 }
 /********************************************************/
 void refresh_vflags( void )
@@ -860,7 +860,7 @@ void refresh_vflags( void )
 }
 /********************************************************/
 // Claudemir
-// função para desenhar o rosto no lado da barra de life
+// funï¿½ï¿½o para desenhar o rosto no lado da barra de life
 void refresh_life_faces (void)
 {
        TRON("q"); 
