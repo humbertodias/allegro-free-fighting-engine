@@ -1,3 +1,5 @@
 data_files
 distro
 build
+data
+*.zip

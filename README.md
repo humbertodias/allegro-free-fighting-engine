@@ -33,15 +33,14 @@ In order to build, you need
 
 Compared to the original, the buildsystem is ported to [cmake](https://cmake.org/).
 
-```
-$ mkdir build
-$ cd build
-$ cmake ..
+```shell
+cmake -S . -B build
+cmake --build build
 ```
 
 ## Playing
 
-Call the binary from the original tree structure in `k91v12s.zip` (containing
+Call the binary from the original tree structure in [k91v12s.zip](https://archive.org/download/k91v12s/k91v12s.zip) (containing
 `midi`, `sprites`, `wav`, `bkgds`, etc).
 
 # License
