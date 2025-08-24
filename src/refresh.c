@@ -55,6 +55,7 @@ void blit_KOF91( void )
 		blit ( virtscreen, screen , 0, 0, start_x, start_y, 320, 200 );
 		release_screen();
 	}
+	vsync();
 
 } /*blit_KOF91( void )*/
 
@@ -77,6 +78,7 @@ void blit_Bkgd( void )
 		blit ( Bkgd, zoomscreen, 0, 0, 0, 0,
 			   ( bkgdlim + 320 ), ( 200 + zoomsup ) );
 	}
+
 } /* blit_Bkgd( void ) */
 
 /*****************************************************************/
@@ -99,6 +101,7 @@ void refresh_screen( void )
 	{
 		blit ( virtscreen, screen , 0, 0, start_x, start_y, 320, 200 );
 	}
+
 } /*refresh_screen( void )*/
 
 // EOF
