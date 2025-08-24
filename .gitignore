@@ -3,3 +3,4 @@ distro
 build
 data
 *.zip
+.idea
